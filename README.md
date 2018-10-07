@@ -22,3 +22,9 @@
 - munkatársak (teljes név, felhasználónév, jelszó);
 - rendelések (felhasználói azonosító, megrendelt ételek és italok, teljesített-e)
 - felhasználó (név, cím, telefonszám)
+
+#### Szerepkörök:
+- Adminisztrátor: Teljeskörű hozzáférése van mindenhez.
+- Diszpécser: Új felhasználót tud regisztrálni. Rendelést tud felvenni.
+- Futár: "Saját" rendeléseinek listázása.
+- Felhasználó: Rendelés leadása. 
