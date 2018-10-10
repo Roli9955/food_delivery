@@ -23,6 +23,12 @@
 - rendelések (felhasználói azonosító, megrendelt ételek és italok, teljesített-e)
 - felhasználó (név, cím, telefonszám)
 
+#### Szerepkörök:
+- Adminisztrátor: Teljeskörű hozzáférése van mindenhez.
+- Diszpécser: Új felhasználót tud regisztrálni. Rendelést tud felvenni.
+- Futár: "Saját" rendeléseinek listázása.
+- Felhasználó: Rendelés leadása. 
+
 #### Végpontok:
 
 - GET / Főoldal
@@ -35,8 +41,8 @@
 
 - PUT /user/... Jogok kezelése
 
-- GET /food Étlap listázása
-- POST /food/add Új étel hozzáadása az étlaphoz
-- Get /drink Itallap listázása
-- POST /drink/add Új ital hozzáadása az itallaophoz
-- GET /container Kosár listázása
+- GET /category Kategória listázása
+- POST /category/add Új Kategória hozzáadása
+- Get /product Termékek listázása
+- POST /product/add Új Termék hozzáadása
+- GET /cart Kosár listázása
