@@ -22,3 +22,21 @@
 - munkatársak (teljes név, felhasználónév, jelszó);
 - rendelések (felhasználói azonosító, megrendelt ételek és italok, teljesített-e)
 - felhasználó (név, cím, telefonszám)
+
+#### Végpontok:
+
+- GET / Főoldal
+- GET /login Bejelentkező oldal
+- POST /login Bejelentkezés
+- GET /logout Kijelentkezés
+- GET /register Regisztrációs oldal
+- POST /register Regisztrációs adatok elküldése
+- GET /user Tagok listázása
+
+- PUT /user/... Jogok kezelése
+
+- GET /food Étlap listázása
+- POST /food/add Új étel hozzáadása az étlaphoz
+- Get /drink Itallap listázása
+- POST /drink/add Új ital hozzáadása az itallaophoz
+- GET /container Kosár listázása
