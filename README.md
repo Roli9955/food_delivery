@@ -28,3 +28,21 @@
 - Diszpécser: Új felhasználót tud regisztrálni. Rendelést tud felvenni.
 - Futár: "Saját" rendeléseinek listázása.
 - Felhasználó: Rendelés leadása. 
+
+#### Végpontok:
+
+- GET / Főoldal
+- GET /login Bejelentkező oldal
+- POST /login Bejelentkezés
+- GET /logout Kijelentkezés
+- GET /register Regisztrációs oldal
+- POST /register Regisztrációs adatok elküldése
+- GET /user Tagok listázása
+
+- PUT /user/... Jogok kezelése
+
+- GET /category Kategória listázása
+- POST /category/add Új Kategória hozzáadása
+- Get /product Termékek listázása
+- POST /product/add Új Termék hozzáadása
+- GET /cart Kosár listázása
