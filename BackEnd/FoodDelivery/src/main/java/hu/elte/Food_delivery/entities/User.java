@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-public class Person implements Serializable{
+public class User implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +34,7 @@ public class Person implements Serializable{
     @NotNull
     private String email;
     
-    @Column(unique = true)
+    @Column
     @NotNull
     private String name;
     
@@ -61,8 +61,8 @@ public class Person implements Serializable{
     @Column
     private String phoneNumber;
     
-    @OneToMany(mappedBy = "person")
-    private List<Order> orders;
+    @OneToMany(mappedBy = "user")
+    private List<Reservation> reservations;
     
     @Column
     @Temporal(TemporalType.TIMESTAMP)

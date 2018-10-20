@@ -13,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -23,22 +26,24 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-public class Order implements Serializable {
+public class Reservation implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
     @Column
+    @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
     private Date orderTime;
     
     @Column
-    private Date deliverTime;
+    private String message;
     
     @JsonIgnore
     @JoinColumn
     @ManyToOne
-    private Person person;
+    private User user;
     
     @ManyToMany
     @JoinTable
