@@ -31,18 +31,29 @@
 
 #### Végpontok:
 
-- GET / Főoldal
-- GET /login Bejelentkező oldal
-- POST /login Bejelentkezés
-- GET /logout Kijelentkezés
-- GET /register Regisztrációs oldal
-- POST /register Regisztrációs adatok elküldése
-- GET /user Tagok listázása
-
-- PUT /user/... Jogok kezelése
-
-- GET /category Kategória listázása
-- POST /category/add Új Kategória hozzáadása
-- Get /product Termékek listázása
-- POST /product/add Új Termék hozzáadása
-- GET /cart Kosár listázása
+Entitások|Típus|Elérés|Leírás
+---|---|---|---
+Category|GET|category/|Lekérdezi az össze kategóriát.
+||GET|category/{id}|Lekérdez egyetlen kategóriát azonosító alapján.
+||POST|category/|Új kategóriát hoz létre.
+||DELETE|category/{id}|Azonosító alapján kategóriát töröl.
+||PUT|category/{id}|Azonosító alapján egy kategória adatain módosít.
+Product|GET|product/|Lekérdezi az össze terméket.
+||GET|product/{id}|Lekérdez egyetlen terméket azonosító alapján.
+||POST|product/|Új termék hoz létre.
+||DELETE|product/{id}|Azonosító alapján terméket töröl.
+||PUT|product/{id}|Azonosító alapján egy termék adatain módosít.
+||PUT|product/{id}/reservation|Azonosító alapján megadja, hogy az adott termék mely rendelésekben szerepel.
+Reservation|GET|reservation/|Lekérdezi az össze rendelést.
+||GET|reservation/{id}|Lekérdez egyetlen rendelést azonosító alapján.
+||POST|reservation/|Új rendelést hoz létre.
+||DELETE|reservation/{id}|Azonosító alapján rendelést töröl.
+||PUT|reservation/{id}|Azonosító alapján egy rendelés adatain módosít.
+||PUT|reservation/{id}/products|Egy már elkészített rendelésthez, további termékeket lehet hozzáadni.
+User|GET|user/|Lekérdezi az össze felhasználót.
+||GET|user/{id}|Lekérdez egyetlen felhasználót azonosító alapján.
+||GET|iser/{id}/reservation|Lekérdeti egy adott felhasználó rendeléseit.
+||POST|user/register|Új felhasználót hoz létre.
+||DELETE|user/{id}|Azonosító alapján felhasználót töröl.
+||PUT|user/{id}|Azonosító alapján egy felhasználó adatain módosít.
+||PUT|user/{id}/reservation|Hozzárendeli a rendeléshez a futárt.

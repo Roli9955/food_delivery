@@ -2,6 +2,7 @@ package hu.elte.Food_delivery.controller;
 
 import hu.elte.Food_delivery.entities.Reservation;
 import hu.elte.Food_delivery.entities.User;
+import hu.elte.Food_delivery.repositories.ReservationRepository;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import hu.elte.Food_delivery.repositories.UserRepository;
+import java.util.List;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -23,6 +25,9 @@ public class UserController {
     
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private ReservationRepository reservationRepository;
     
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -47,6 +52,7 @@ public class UserController {
     }
     
     @GetMapping("/{id}")
+    @Secured({ "ROLE_ADMIN", "ROLE_DISPACHER" })
     public ResponseEntity<User> get(@PathVariable Integer id){
         Optional<User> oUser = userRepository.findById(id);
         if(!oUser.isPresent()){
@@ -56,6 +62,7 @@ public class UserController {
     }
     
     @DeleteMapping("/{id}")
+    @Secured({ "ROLE_ADMIN" })
     public ResponseEntity delete(@PathVariable Integer id){
         Optional<User> oUser = userRepository.findById(id);
         if(!oUser.isPresent()){
@@ -66,6 +73,7 @@ public class UserController {
     }
     
     @PutMapping("/{id}")
+    @Secured({ "ROLE_ADMIN" })
     public ResponseEntity<User> put(@PathVariable Integer id, 
                                         @RequestBody User user){
         Optional<User> oUser = userRepository.findById(id);
@@ -77,12 +85,34 @@ public class UserController {
     }
     
     @GetMapping("/{id}/reservations")
+    @Secured({ "ROLE_ADMIN", "ROLE_DISPACHER", "ROLE_DELIVERER" })
     public ResponseEntity<Iterable<Reservation>> getReservations(@PathVariable Integer id){
         Optional<User> oUser = userRepository.findById(id);
         if(!oUser.isPresent()){
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(oUser.get().getReservations());
+    }
+    
+    @PutMapping("/{id}/reservations")
+    @Secured({ "ROLE_ADMIN", "ROLE_DISPATCHER" })
+    public ResponseEntity<Iterable<Reservation>> putReservations(@PathVariable Integer id,
+                                                                 @RequestBody List<Reservation> reservations) {
+        Optional<User> oUser = userRepository.findById(id);
+        if (!oUser.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+        for (Reservation reservation: reservations) {
+            Optional<Reservation> oReservation  = reservationRepository.findById(reservation.getId());
+            if (!oReservation.isPresent()) {
+                continue;
+            }
+            
+            oReservation.get().setDeliverer(oUser.get());
+            reservationRepository.save(oReservation.get());
+        }
+        
+        return ResponseEntity.ok(oUser.get().getReservationDelivery());
     }
     
 }

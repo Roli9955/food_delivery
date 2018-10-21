@@ -1,8 +1,11 @@
 package hu.elte.Food_delivery.controller;
 
+import hu.elte.Food_delivery.entities.Product;
 import hu.elte.Food_delivery.entities.Reservation;
 import hu.elte.Food_delivery.repositories.ProductRepository;
 import hu.elte.Food_delivery.repositories.ReservationRepository;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -64,6 +67,27 @@ public class ReservationController {
         }
         reservation.setId(id);
         return ResponseEntity.ok(reservationRepository.save(reservation));
+    }
+    
+    @PutMapping("/{id}/products")
+    public ResponseEntity<Iterable<Product>> addProductsToReservation(@PathVariable Integer id, 
+                                                                        @RequestBody List<Product> products){
+        Optional<Reservation> oReservation = reservationRepository.findById(id);
+        if(!oReservation.isPresent()){
+            return ResponseEntity.notFound().build();
+        }
+        List<Product> newProductList = new ArrayList<>();
+        newProductList = oReservation.get().getProducts();
+        for(Product product: products){
+            Optional<Product> oProduct = productRepository.findById(product.getId());
+            if(!oProduct.isPresent()){
+                continue;
+            }
+            newProductList.add(product);
+        }
+        oReservation.get().setProducts(newProductList);
+        reservationRepository.save(oReservation.get());
+        return ResponseEntity.ok(oReservation.get().getProducts());
     }
     
 }

@@ -51,4 +51,5 @@ public class Product implements Serializable{
     @ManyToMany(mappedBy = "products")
     @JsonIgnore
     private List<Reservation> reservations;
+    
 }

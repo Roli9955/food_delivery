@@ -45,6 +45,11 @@ public class Reservation implements Serializable {
     @ManyToOne
     private User user;
     
+    @JsonIgnore
+    @JoinColumn
+    @ManyToOne
+    private User deliverer;
+    
     @ManyToMany
     @JoinTable
     private List<Product> products;

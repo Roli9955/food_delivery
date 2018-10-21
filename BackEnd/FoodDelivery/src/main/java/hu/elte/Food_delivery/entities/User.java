@@ -1,5 +1,6 @@
 package hu.elte.Food_delivery.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -10,6 +11,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -63,6 +66,9 @@ public class User implements Serializable{
     
     @OneToMany(mappedBy = "user")
     private List<Reservation> reservations;
+    
+    @OneToMany(mappedBy = "deliverer")
+    private List<Reservation> reservationDelivery;
     
     @Column
     @Temporal(TemporalType.TIMESTAMP)

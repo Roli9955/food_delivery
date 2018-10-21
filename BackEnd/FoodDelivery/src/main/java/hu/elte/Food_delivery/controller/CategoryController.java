@@ -5,6 +5,7 @@ import hu.elte.Food_delivery.repositories.CategoryRepository;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +29,7 @@ public class CategoryController {
     }
     
     @PostMapping("")
+    @Secured({ "ROLE_ADMIN" })
     public ResponseEntity<Category> post(@RequestBody Category category){
         category.setId(null);
        return ResponseEntity.ok(categoryRepository.save(category));
@@ -42,7 +44,8 @@ public class CategoryController {
         return ResponseEntity.ok(oCategory.get());
     }
     
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}")    
+    @Secured({ "ROLE_ADMIN" })
     public ResponseEntity delete(@PathVariable Integer id){
         Optional<Category> oCategory = categoryRepository.findById(id);
         if(!oCategory.isPresent()){
@@ -53,6 +56,7 @@ public class CategoryController {
     }
     
     @PutMapping("/{id}")
+    @Secured({ "ROLE_ADMIN" })
     public ResponseEntity<Category> put(@PathVariable Integer id, 
                                         @RequestBody Category category){
         Optional<Category> oCategory = categoryRepository.findById(id);
