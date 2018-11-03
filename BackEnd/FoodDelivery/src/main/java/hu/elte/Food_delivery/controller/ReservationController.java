@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +29,7 @@ public class ReservationController {
     private ProductRepository productRepository;
     
     @GetMapping("")
+    @Secured({ "ROLE_ADMIN", "ROLE_DISPATCHER" })
     public ResponseEntity<Iterable<Reservation>> getAll(){
         Iterable<Reservation> reservations = reservationRepository.findAll();
         return ResponseEntity.ok(reservations);
@@ -49,6 +51,7 @@ public class ReservationController {
     }
     
     @DeleteMapping("/{id}")
+    @Secured({ "ROLE_ADMIN", "ROLE_DISPATCHER" })
     public ResponseEntity delete(@PathVariable Integer id){
         Optional<Reservation> oReservation = reservationRepository.findById(id);
         if(!oReservation.isPresent()){
@@ -59,6 +62,7 @@ public class ReservationController {
     }
     
     @PutMapping("/{id}")
+    @Secured({ "ROLE_ADMIN", "ROLE_DISPATCHER" })
     public ResponseEntity<Reservation> put(@PathVariable Integer id, 
                                         @RequestBody Reservation reservation){
         Optional<Reservation> oReservation = reservationRepository.findById(id);
@@ -70,6 +74,7 @@ public class ReservationController {
     }
     
     @PutMapping("/{id}/products")
+    @Secured({ "ROLE_ADMIN", "ROLE_DISPATCHER" })
     public ResponseEntity<Iterable<Product>> addProductsToReservation(@PathVariable Integer id, 
                                                                         @RequestBody List<Product> products){
         Optional<Reservation> oReservation = reservationRepository.findById(id);

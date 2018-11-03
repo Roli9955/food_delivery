@@ -68,6 +68,7 @@ public class ProductController {
     }
     
     @GetMapping("/{id}/reservation")
+    @Secured({ "ROLE_ADMIN", "ROLE_DISPATCHER" })
     public ResponseEntity<Iterable<Reservation>> getProductReservations(@PathVariable Integer id){
         Optional<Product> oProduct = productRepository.findById(id);
         if(!oProduct.isPresent()){

@@ -52,7 +52,6 @@ public class UserController {
     }
     
     @GetMapping("/{id}")
-    @Secured({ "ROLE_ADMIN", "ROLE_DISPACHER" })
     public ResponseEntity<User> get(@PathVariable Integer id){
         Optional<User> oUser = userRepository.findById(id);
         if(!oUser.isPresent()){
@@ -85,7 +84,6 @@ public class UserController {
     }
     
     @GetMapping("/{id}/reservations")
-    @Secured({ "ROLE_ADMIN", "ROLE_DISPACHER", "ROLE_DELIVERER" })
     public ResponseEntity<Iterable<Reservation>> getReservations(@PathVariable Integer id){
         Optional<User> oUser = userRepository.findById(id);
         if(!oUser.isPresent()){
