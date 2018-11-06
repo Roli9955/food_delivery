@@ -50,7 +50,6 @@ public class Reservation implements Serializable {
     @ManyToOne
     private User deliverer;
     
-    @ManyToMany
-    @JoinTable
-    private List<Product> products;
+    @ManyToMany(mappedBy = "reservations")
+    private List<Piece> pieces;
 }

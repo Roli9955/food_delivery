@@ -1,7 +1,6 @@
 package hu.elte.Food_delivery.controller;
 
 import hu.elte.Food_delivery.entities.Product;
-import hu.elte.Food_delivery.entities.Reservation;
 import hu.elte.Food_delivery.repositories.ProductRepository;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,7 +66,7 @@ public class ProductController {
         return ResponseEntity.ok(productRepository.save(product));
     }
     
-    @GetMapping("/{id}/reservation")
+    /*@GetMapping("/{id}/reservation")
     @Secured({ "ROLE_ADMIN", "ROLE_DISPATCHER" })
     public ResponseEntity<Iterable<Reservation>> getProductReservations(@PathVariable Integer id){
         Optional<Product> oProduct = productRepository.findById(id);
@@ -75,5 +74,5 @@ public class ProductController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(oProduct.get().getReservations());
-    }
+    }*/
 }

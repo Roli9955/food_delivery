@@ -79,7 +79,8 @@ public class User implements Serializable{
         ROLE_ADMIN,
         ROLE_DISPATCHER,
         ROLE_DELIVERER,
-        ROLE_USER
+        ROLE_USER,
+        ROLE_GUEST
     }
     
 }

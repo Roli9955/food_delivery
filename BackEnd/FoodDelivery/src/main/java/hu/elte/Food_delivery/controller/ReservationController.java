@@ -1,11 +1,8 @@
 package hu.elte.Food_delivery.controller;
 
-import hu.elte.Food_delivery.entities.Product;
 import hu.elte.Food_delivery.entities.Reservation;
 import hu.elte.Food_delivery.repositories.ProductRepository;
 import hu.elte.Food_delivery.repositories.ReservationRepository;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -73,7 +70,7 @@ public class ReservationController {
         return ResponseEntity.ok(reservationRepository.save(reservation));
     }
     
-    @PutMapping("/{id}/products")
+    /*@PutMapping("/{id}/products")
     @Secured({ "ROLE_ADMIN", "ROLE_DISPATCHER" })
     public ResponseEntity<Iterable<Product>> addProductsToReservation(@PathVariable Integer id, 
                                                                         @RequestBody List<Product> products){
@@ -93,6 +90,6 @@ public class ReservationController {
         oReservation.get().setProducts(newProductList);
         reservationRepository.save(oReservation.get());
         return ResponseEntity.ok(oReservation.get().getProducts());
-    }
+    }*/
     
 }

@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -23,34 +24,23 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-public class Product implements Serializable{
+public class Piece implements Serializable{
     
     @Id
+    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
     @Column
     @NotNull
-    private String name;
+    private Integer piece;
     
-    @Column
-    @NotNull
-    private Integer price;
-    
-    @Column
-    @NotNull
-    private Boolean outOfOrder;
-    
-    @Column
-    private String description;
-    
+    @ManyToMany
+    @JoinTable
     @JsonIgnore
+    private List<Reservation> reservations;
+    
     @JoinColumn
     @ManyToOne
-    private Category category;
-    
-    @OneToMany(mappedBy = "products")
-    @JsonIgnore
-    private List<Piece> pieces;
-    
+    private Product products;
 }
