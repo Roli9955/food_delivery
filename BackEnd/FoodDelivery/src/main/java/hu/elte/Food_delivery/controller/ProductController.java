@@ -1,6 +1,8 @@
 package hu.elte.Food_delivery.controller;
 
+import hu.elte.Food_delivery.entities.Category;
 import hu.elte.Food_delivery.entities.Product;
+import hu.elte.Food_delivery.repositories.CategoryRepository;
 import hu.elte.Food_delivery.repositories.ProductRepository;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProductController {
     @Autowired
     private ProductRepository productRepository;
+    
+    @Autowired
+    private CategoryRepository categoryRepository;
     
     @GetMapping("")
     public ResponseEntity<Iterable<Product>> getAll(){
@@ -66,13 +71,20 @@ public class ProductController {
         return ResponseEntity.ok(productRepository.save(product));
     }
     
-    /*@GetMapping("/{id}/reservation")
-    @Secured({ "ROLE_ADMIN", "ROLE_DISPATCHER" })
-    public ResponseEntity<Iterable<Reservation>> getProductReservations(@PathVariable Integer id){
-        Optional<Product> oProduct = productRepository.findById(id);
+    @PutMapping("/{id}/category/{id2}")
+    @Secured({ "ROLE_ADMIN" })
+    public ResponseEntity<Product> changeCategory(@PathVariable("id") Integer productId, @PathVariable("id2") Integer categoryId){
+        Optional<Product> oProduct = productRepository.findById(productId);
         if(!oProduct.isPresent()){
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(oProduct.get().getReservations());
-    }*/
+        
+        Optional<Category> oCategory = categoryRepository.findById(categoryId);
+        if(!oCategory.isPresent()){
+            return ResponseEntity.notFound().build();
+        }
+        
+        oProduct.get().setCategory(oCategory.get());
+        return ResponseEntity.ok(productRepository.save(oProduct.get()));
+    }
 }

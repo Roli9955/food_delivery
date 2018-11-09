@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PieceRepository extends CrudRepository<Piece, Integer>{
-    
+
 }

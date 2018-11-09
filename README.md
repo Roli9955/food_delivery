@@ -31,29 +31,31 @@
 
 #### Végpontok:
 
-Entitások|Típus|Elérés|Leírás
----|---|---|---
-Category|GET|category/|Lekérdezi az össze kategóriát.
-||GET|category/{id}|Lekérdez egyetlen kategóriát azonosító alapján.
-||POST|category/|Új kategóriát hoz létre.
-||DELETE|category/{id}|Azonosító alapján kategóriát töröl.
-||PUT|category/{id}|Azonosító alapján egy kategória adatain módosít.
-Product|GET|product/|Lekérdezi az össze terméket.
-||GET|product/{id}|Lekérdez egyetlen terméket azonosító alapján.
-||POST|product/|Új termék hoz létre.
-||DELETE|product/{id}|Azonosító alapján terméket töröl.
-||PUT|product/{id}|Azonosító alapján egy termék adatain módosít.
-||PUT|product/{id}/reservation|Azonosító alapján megadja, hogy az adott termék mely rendelésekben szerepel.
-Reservation|GET|reservation/|Lekérdezi az össze rendelést.
-||GET|reservation/{id}|Lekérdez egyetlen rendelést azonosító alapján.
-||POST|reservation/|Új rendelést hoz létre.
-||DELETE|reservation/{id}|Azonosító alapján rendelést töröl.
-||PUT|reservation/{id}|Azonosító alapján egy rendelés adatain módosít.
-||PUT|reservation/{id}/products|Egy már elkészített rendelésthez, további termékeket lehet hozzáadni.
-User|GET|user/|Lekérdezi az össze felhasználót.
-||GET|user/{id}|Lekérdez egyetlen felhasználót azonosító alapján.
-||GET|iser/{id}/reservation|Lekérdeti egy adott felhasználó rendeléseit.
-||POST|user/register|Új felhasználót hoz létre.
-||DELETE|user/{id}|Azonosító alapján felhasználót töröl.
-||PUT|user/{id}|Azonosító alapján egy felhasználó adatain módosít.
-||PUT|user/{id}/reservation|Hozzárendeli a rendeléshez a futárt.
+Entitások|Típus|Elérés|Leírás|Ki fér hozzá?
+---|---|---|---|---
+Category|GET|category/|Lekérdezi az össze kategóriát.|Mindenki
+||GET|category/{id}|Lekérdez egyetlen kategóriát azonosító alapján.|Mindenki
+||POST|category/|Új kategóriát hoz létre.|Admin
+||POST|category/{id}/product|Egy megadott azonosítójú kategóriához, terméket rendel.|Admin
+||DELETE|category/{id}|Azonosító alapján kategóriát töröl.|Admin
+||PUT|category/{id}|Azonosító alapján egy kategória adatain módosít.|Admin
+Product|GET|product/|Lekérdezi az össze terméket.|Mindenki
+||GET|product/{id}|Lekérdez egyetlen terméket azonosító alapján.|Admin
+||POST|product/|Új termék hoz létre.|Admin
+||DELETE|product/{id}|Azonosító alapján terméket töröl.|Admin
+||PUT|product/{id}|Azonosító alapján egy termék adatain módosít.|Admin
+||PUT|product/{id}/category/{id2}|Egy id azonosítújó termék kategóriáját megváltoztatja egy id2 azonosítójú kategóriára.|Admin
+Reservation|GET|reservation/|Lekérdezi az össze rendelést.|Admin, Diszpécser
+||GET|reservation/{id}|Lekérdez egyetlen rendelést azonosító alapján.|Admin, Diszpécser, Felhasználó
+||POST|reservation/|Új rendelést hoz létre.|Admin, Diszpécser, Felhasználó
+||DELETE|reservation/{id}|Azonosító alapján rendelést töröl.|Admin, Diszpécser
+||DELETE|reservation/{id}/product|Egy megadott rendelésből töröl termékeket.|Admin, Diszpécser
+||PUT|reservation/{id}|Azonosító alapján egy rendelés adatain módosít.|Admin, Diszpécser
+||PUT|reservation/{id}/product|Egy már elkészített rendeléshez, további termékeket rendel és meglévőeket módosít.|Admin, Diszpécser
+User|GET|user/|Lekérdezi az össze felhasználót.|Admin
+||GET|user/{id}|Lekérdez egyetlen felhasználót azonosító alapján.|Admin, Diszpécser, Futár,  Felhasználó
+||GET|user/{id}/reservation|Lekérdeti egy adott felhasználó rendeléseit.|Admin, Diszpécser, Futár,  Felhasználó
+||POST|user/register|Új felhasználót hoz létre.|Vendég
+||DELETE|user/{id}|Azonosító alapján felhasználót töröl.|Admin
+||PUT|user/{id}|Azonosító alapján egy felhasználó adatain módosít.|Admin
+||PUT|user/{id}/reservation|Hozzárendeli a rendeléshez a futárt.|Admin, Diszpécser

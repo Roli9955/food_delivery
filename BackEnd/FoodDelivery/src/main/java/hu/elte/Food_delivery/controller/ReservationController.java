@@ -1,8 +1,14 @@
 package hu.elte.Food_delivery.controller;
 
+import hu.elte.Food_delivery.entities.Piece;
+import hu.elte.Food_delivery.entities.Product;
 import hu.elte.Food_delivery.entities.Reservation;
+import hu.elte.Food_delivery.repositories.PieceRepository;
 import hu.elte.Food_delivery.repositories.ProductRepository;
 import hu.elte.Food_delivery.repositories.ReservationRepository;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +31,9 @@ public class ReservationController {
     @Autowired
     private ProductRepository productRepository;
     
+    @Autowired
+    private PieceRepository pieceRepository;
+    
     @GetMapping("")
     @Secured({ "ROLE_ADMIN", "ROLE_DISPATCHER" })
     public ResponseEntity<Iterable<Reservation>> getAll(){
@@ -33,12 +42,14 @@ public class ReservationController {
     }
     
     @PostMapping("")
+    @Secured({ "ROLE_ADMIN", "ROLE_DISPATCHER", "ROLE_USER" })
     public ResponseEntity<Reservation> post(@RequestBody Reservation reservation){
         reservation.setId(null);
        return ResponseEntity.ok(reservationRepository.save(reservation));
     }
     
     @GetMapping("/{id}")
+    @Secured({ "ROLE_ADMIN", "ROLE_DISPATCHER", "ROLE_USER" })
     public ResponseEntity<Reservation> get(@PathVariable Integer id){
         Optional<Reservation> oReservation = reservationRepository.findById(id);
         if(!oReservation.isPresent()){
@@ -70,26 +81,61 @@ public class ReservationController {
         return ResponseEntity.ok(reservationRepository.save(reservation));
     }
     
-    /*@PutMapping("/{id}/products")
+    @DeleteMapping("/{id}/product")
     @Secured({ "ROLE_ADMIN", "ROLE_DISPATCHER" })
-    public ResponseEntity<Iterable<Product>> addProductsToReservation(@PathVariable Integer id, 
-                                                                        @RequestBody List<Product> products){
+    public ResponseEntity deleteProductFromReservation(@PathVariable Integer id, @RequestBody List<Product> products){
         Optional<Reservation> oReservation = reservationRepository.findById(id);
         if(!oReservation.isPresent()){
             return ResponseEntity.notFound().build();
         }
-        List<Product> newProductList = new ArrayList<>();
-        newProductList = oReservation.get().getProducts();
-        for(Product product: products){
-            Optional<Product> oProduct = productRepository.findById(product.getId());
-            if(!oProduct.isPresent()){
-                continue;
+        
+        for(Piece p: oReservation.get().getPieces()){
+            for(Product pr: products){
+                Optional<Product> oProduct = productRepository.findById(pr.getId());
+                if(!oProduct.isPresent()){
+                    return ResponseEntity.notFound().build();
+                }
+                if(p.getProducts().getId().equals(pr.getId())){
+                    pieceRepository.delete(p);
+                    break;
+                }
             }
-            newProductList.add(product);
         }
-        oReservation.get().setProducts(newProductList);
-        reservationRepository.save(oReservation.get());
-        return ResponseEntity.ok(oReservation.get().getProducts());
-    }*/
+        return ResponseEntity.ok().build();
+    }
+    
+    @PutMapping("/{id}/product")
+    @Secured({ "ROLE_ADMIN", "ROLE_DISPATCHER" })
+    public ResponseEntity<Iterable<Piece>> addProductsToReservation(@PathVariable Integer id, 
+                                                                        @RequestBody List<Piece> pieces){
+        Optional<Reservation> oReservation = reservationRepository.findById(id);
+        if(!oReservation.isPresent()){
+            return ResponseEntity.notFound().build();
+        }
+        List<Reservation> pieceReservation = new ArrayList<>();
+        pieceReservation.add(oReservation.get());
+        for(Piece piece: pieces){
+            Boolean l = false;
+            for(Piece p: oReservation.get().getPieces()){
+                if(Objects.equals(piece.getProducts().getId(), p.getProducts().getId())){
+                    p.setPiece(piece.getPiece());
+                    pieceRepository.save(p);
+                    l = true;
+                    break;
+                }
+            }
+            if(l) continue;
+            Optional<Product> oProduct = productRepository.findById(piece.getProducts().getId());
+            if(!oProduct.isPresent()){
+                return ResponseEntity.notFound().build();
+            }
+            piece.setProducts(oProduct.get());
+            piece.setId(null);
+            piece.setReservations(pieceReservation);
+            oReservation.get().getPieces().add(piece);
+            pieceRepository.save(piece);
+        }
+        return ResponseEntity.ok(oReservation.get().getPieces());
+    }
     
 }

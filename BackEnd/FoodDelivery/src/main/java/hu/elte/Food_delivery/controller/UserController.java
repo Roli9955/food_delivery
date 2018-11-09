@@ -40,6 +40,7 @@ public class UserController {
     }
     
     @PostMapping("/register")
+    @Secured({ "ROLE_GUEST" })
     public ResponseEntity<User> post(@RequestBody User user) {
         Optional<User> oUser = userRepository.findByEmail(user.getEmail());
         if (oUser.isPresent()) {
@@ -52,6 +53,7 @@ public class UserController {
     }
     
     @GetMapping("/{id}")
+    @Secured({ "ROLE_ADMIN", "ROLE_DISPATCHER", "ROLE_DELIVERER", "ROLE_USER" })
     public ResponseEntity<User> get(@PathVariable Integer id){
         Optional<User> oUser = userRepository.findById(id);
         if(!oUser.isPresent()){
