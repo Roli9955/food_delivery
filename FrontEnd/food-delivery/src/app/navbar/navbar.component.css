@@ -1,0 +1,9 @@
+mat-toolbar a {
+    padding-right: 20px;
+    text-decoration: none;
+    color: inherit;
+}
+
+mat-toolbar{
+    background-color: gray;
+}
