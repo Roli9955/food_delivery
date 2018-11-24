@@ -30,7 +30,7 @@
 - Felhasználó: Rendelés leadása. 
 
 #### Adatbázis modell:
-!Adatbázis-modell(https://github.com/Roli9955/food_delivery/tree/master/images/Database/Database_sheme.png)
+![Adatbázis-modell](https://github.com/Roli9955/food_delivery/tree/master/images/Database/Database_sheme.png)
 - A CATEGORY és PRODUCT táblák között 1 az N-hez kapcsoalt áll fenn, mert egy terméknek egy kategóriája lehet, de egy kategóriatöbb termékhez id tartozhat. 
 Kapcsolat(ok): CATEGORY(ID) - PRODUCT(Category_ID)
 - A PRODUCT és PIECE között is 1 az N-hez kapcsolat áll fent, mert egy termékből nem csak egy lehet.
