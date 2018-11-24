@@ -29,6 +29,17 @@
 - Futár: "Saját" rendeléseinek listázása.
 - Felhasználó: Rendelés leadása. 
 
+#### Adatbázis modell:
+!Adatbázis-modell(https://github.com/Roli9955/food_delivery/tree/master/images/Database/Database_sheme.png)
+- A CATEGORY és PRODUCT táblák között 1 az N-hez kapcsoalt áll fenn, mert egy terméknek egy kategóriája lehet, de egy kategóriatöbb termékhez id tartozhat. 
+Kapcsolat(ok): CATEGORY(ID) - PRODUCT(Category_ID)
+- A PRODUCT és PIECE között is 1 az N-hez kapcsolat áll fent, mert egy termékből nem csak egy lehet.
+Kapcsolat(ok): PRODUCT(ID) - PIECE(Product_ID)
+- A PIECE a RESERVATION táblával egy RESERVATION_has_PIECE segédtábla segítségével van összekapcsolva. A PIECE és RESERVATION_has_PIECE között 1 az N-hez, míg a RESERVATION_has_PIECE és RESERVATION között N az 1-hez kapcsolat van.
+Kapcsolat(ok): PIECE(PIECE_ID) - RESERVATION_has_PIECE(PIECE_ID), RESERVATION_has_PIECE(RESERVATION_ID) - RESERVATION(ID)
+- A USER és RESERVATION táblák között is 1 az N-hez kapcsolat van, hiszen 1 felhasználónak töb rendelése is lehet, de 1 rendelés nem tartozhat több felhasználóhoz.
+Kapcsolat(ok): USER(ID) - RESERVATION(User-ID)
+
 #### Végpontok:
 
 Entitások|Típus|Elérés|Leírás|Ki fér hozzá?

@@ -59,6 +59,7 @@ public class User implements Serializable{
     private String streetNumber;
     
     @Column
+    @NotNull
     private String phoneNumber;
     
     @OneToMany(mappedBy = "user")
