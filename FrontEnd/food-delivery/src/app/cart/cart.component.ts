@@ -16,7 +16,6 @@ export class CartComponent implements OnInit {
 
   private _pieces: Piece[] = [];
   
-
   private displayColumns = ['pic', 'productName', 'price', 'pieces', 'button'];
 
   private _piece: Piece = {
@@ -39,7 +38,6 @@ export class CartComponent implements OnInit {
       const product: Product = this.productService.getProductById(id);
 
       const size: number = this._pieces.length;
-      console.log('Méret' + size);
       for(let p of this._pieces){
         if(p.product.id === product.id){
           p.piece = p.piece + 1;
@@ -62,8 +60,8 @@ export class CartComponent implements OnInit {
     
   }
 
-  onKey(event){
-    
-    
+  onClickDelete(){
+    this._pieces = [];
+    this.cartService.deleteSpaces();
   }
 }

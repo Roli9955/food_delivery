@@ -1,14 +1,14 @@
 table {
-    width: 100%;
+  width: 100%;
 }
 
 img{
-  width: 30%;
-  padding: 5px;
+width: 30%;
+padding: 5px;
 }
 
 td{
-  width: 25%;
+width: 25%;
 }
 
 .final{
@@ -16,4 +16,8 @@ td{
   margin: 10px 5px 0px 5px;
   width: 25%;
   text-align: center;
+}
+
+button{
+  background-color: lightgray;
 }

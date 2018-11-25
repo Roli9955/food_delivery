@@ -17,12 +17,17 @@ import {
   MatGridListModule,
   MatOptionModule,
   MatSelectModule,
-  MatTableModule} from '@angular/material';
+  MatTableModule,
+  MatSnackBarModule,
+  MatExpansionModule} from '@angular/material';
 import { UserRegistrationLoginComponent } from './user-registration-login/user-registration-login.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { CartComponent } from './cart/cart.component';
+import { ReservationCommitComponent } from './reservation-commit/reservation-commit.component';
+import { MyReservationsComponent } from './my-reservations/my-reservations.component';
+import { MainPageComponent } from './main-page/main-page.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +37,10 @@ import { CartComponent } from './cart/cart.component';
     LoginComponent,
     RegistrationComponent,
     ProductListComponent,
-    CartComponent
+    CartComponent,
+    ReservationCommitComponent,
+    MyReservationsComponent,
+    MainPageComponent
   ],
   imports: [
     FormsModule,
@@ -50,7 +58,9 @@ import { CartComponent } from './cart/cart.component';
     MatOptionModule,
     MatSelectModule,
     ReactiveFormsModule,
-    MatTableModule
+    MatTableModule,
+    MatSnackBarModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

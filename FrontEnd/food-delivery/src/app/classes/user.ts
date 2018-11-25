@@ -2,7 +2,9 @@ import { Reservation } from "./reservation";
 
 export class User {
     public id: number;
+    public email: string;
     public name: string;
+    public phone: string;
     public password: string;
     public postCode: number;
     public city: string;

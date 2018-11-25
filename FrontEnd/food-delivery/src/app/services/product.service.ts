@@ -14,6 +14,12 @@ export class ProductService {
     {id: 5, name: 'Taco', price: 1000, outOfOrder: true, description: '-', category: null, url: '../../img/taco.jpeg'} as Product
   ];
 
+  private _famousProduct: Product[] = [
+    {id: 1, name: 'Hamburger', price: 1000, outOfOrder: false, description: 'Finom', category: null, url: '../../img/hamburger.jpeg'} as Product,
+    {id: 2, name: 'Palacsinta', price: 1000, outOfOrder: false, description: 'Nagyon Finom', category: null, url: '../../img/pancake.jpeg'} as Product,
+    {id: 3, name: 'Saláta', price: 1000, outOfOrder: true, description: '-', category: null, url: '../../img/salad.jpg'} as Product,
+  ];
+
   constructor() { }
 
   public getProducts(): Product[] {
@@ -22,5 +28,9 @@ export class ProductService {
 
   public getProductById(id: number): Product{
     return this._products.find((product: Product) => product.id == id);
+  }
+
+  public getFamousProduct(): Product[]{
+    return this._famousProduct;
   }
 }

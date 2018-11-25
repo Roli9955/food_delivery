@@ -1,0 +1,39 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+  }
+  
+.form-container > * {
+  width: 80%;
+  margin: auto;
+}
+
+a{
+  background-color: lightgray;
+  width: 20%;
+}
+
+table {
+  width: 100%;
+}
+
+img{
+width: 30%;
+padding: 5px;
+}
+
+td{
+width: 25%;
+}
+
+.final{
+  background-color: lightgray;
+  margin: 10px 5px 0px 5px;
+  width: 25%;
+  text-align: center;
+}
+
+.order-table{
+  margin-top: 15px;
+}

@@ -1,0 +1,66 @@
+<div calss="container">
+  <div class="row">
+    <div class="col-6">  
+      <div class="form-container">
+        <mat-form-field>
+          <input matInput value="{{ _user.name }}" type="text" placeholder="Név">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput value="{{ _user.email }}" type="email" placeholder="E-mail cím">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput value="{{ _user.phone }}" type="text" value="" placeholder="Telefonszám">
+        </mat-form-field>
+        <mat-form-field>
+          <textarea matInput placeholder="Üzenet"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-6">  
+      <div class="form-container">
+        <mat-form-field>
+          <input matInput value="{{ _user.postCode }}" type="text" maxlength="4" placeholder="Irányítószám">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput value="{{ _user.city }}" type="text" placeholder="Település">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput value="{{ _user.street }}" type="text" placeholder="Közterület neve és jellege">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput value="{{ _user.streetNumber }}" type="text" placeholder="Házszám">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="order-table">
+    <table mat-table [dataSource]="_pieces" class="mat-elevation-z1">
+  
+      <ng-container matColumnDef="pic">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let piece"> <img src="{{ piece.product.url }}"> </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="productName">
+        <th mat-header-cell *matHeaderCellDef> Termék neve </th>
+        <td mat-cell *matCellDef="let piece"> {{ piece.product.name }} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef> Ár </th>
+        <td mat-cell *matCellDef="let piece"> {{ piece.product.price }} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="pieces">
+        <th mat-header-cell *matHeaderCellDef> Darab </th>
+        <td mat-cell *matCellDef="let piece"> {{ piece.piece }} </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+    </table>
+  </div>
+  <div align="center">
+    <a class="final" mat-button (click)="reservationCommit()" routerLink="">Rendelés véglegesítése</a>
+  </div>

@@ -44,4 +44,8 @@ export class CartService {
   public addPiece(piece: Piece){
     this._pieces.push(piece);
   }
+
+  public deleteSpaces(){
+    this._pieces = [];
+  }
 }
