@@ -1,9 +1,14 @@
 .registration-container {
     display: flex;
     flex-direction: column;
+    padding-top: 20px;
   }
   
 .registration-container > * {
-  width: 60%;
+  width: 95%;
   margin: auto;
+}
+
+button{
+  background-color: lightgrey;
 }

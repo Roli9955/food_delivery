@@ -1,0 +1,21 @@
+ <mat-grid-list cols="3" rowHeight="380">
+    <mat-grid-tile *ngFor="let product of _products">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title align="center">
+            {{ product.name }}
+          </mat-card-title>
+          <mat-card-subtitle>
+            <b>Ár: {{ product.price }}</b>
+          </mat-card-subtitle>
+        </mat-card-header>
+        <img src="{{ product.url }}">
+        <mat-card-content>{{ product.description }}</mat-card-content>
+        <mat-card-actions align="right">
+            <button mat-flat-button routerLink="cart/{{ product.id }}" type="submit" disabled="{{ product.outOfOrder }}">
+              Kosárba
+            </button>
+          </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>

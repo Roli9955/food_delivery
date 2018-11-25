@@ -1,0 +1,15 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+ 
+  }
+  
+.login > * {
+  width: 95%;
+  margin: auto;
+}
+
+button{
+  background-color: lightgrey;
+}
