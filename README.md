@@ -40,6 +40,8 @@ Kapcsolat(ok): PIECE(PIECE_ID) - RESERVATION_has_PIECE(PIECE_ID), RESERVATION_ha
 - A USER és RESERVATION táblák között is 1 az N-hez kapcsolat van, hiszen 1 felhasználónak töb rendelése is lehet, de 1 rendelés nem tartozhat több felhasználóhoz.
 Kapcsolat(ok): USER(ID) - RESERVATION(User-ID)
 
+#### Use-Case:
+
 #### Végpontok:
 
 Entitások|Típus|Elérés|Leírás|Ki fér hozzá?
