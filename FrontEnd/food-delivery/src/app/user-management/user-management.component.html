@@ -1,0 +1,58 @@
+<table mat-table [dataSource]="users" class="mat-elevation-z1">
+
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Név </th>
+        <td mat-cell *matCellDef="let users"> {{ users.name }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> E-mail cím </th>
+        <td mat-cell *matCellDef="let users"> {{ users.email }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="phoneNumber">
+            <th mat-header-cell *matHeaderCellDef> Telefonszám </th>
+            <td mat-cell *matCellDef="let users"> {{ users.phoneNumber }} </td>
+        </ng-container>
+
+    <ng-container matColumnDef="postCode">
+        <th mat-header-cell *matHeaderCellDef> Irányítószám </th>
+        <td mat-cell *matCellDef="let users"> {{ users.postCode }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="city">
+        <th mat-header-cell *matHeaderCellDef> Település </th>
+        <td mat-cell *matCellDef="let users"> {{ users.city }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="street">
+        <th mat-header-cell *matHeaderCellDef> Közterület neve és jellege </th>
+        <td mat-cell *matCellDef="let users"> {{ users.street }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="streetNumber">
+        <th mat-header-cell *matHeaderCellDef> Házszám </th>
+        <td mat-cell *matCellDef="let users"> {{ users.streetNumber }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastLogin">
+        <th mat-header-cell *matHeaderCellDef> Utolsó bejelentkezés </th>
+        <td mat-cell *matCellDef="let users"> {{ users.lastLogin | date:'yyyy. hh. dd. hh:mm' }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="permission">
+        <th mat-header-cell *matHeaderCellDef> Jogosultság </th>
+        <td mat-cell *matCellDef="let users"> {{ users.role }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="button">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let users"> 
+                <button mat-button (click)="onClickDialog(users.id)">
+                    Módosítás
+                </button></td>
+        </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnTitle"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnTitle;"></tr>
+</table>

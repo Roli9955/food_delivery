@@ -44,12 +44,15 @@ public class Product implements Serializable{
     @Column
     private String description;
     
+    @Column
+    private String url;
+    
     @JsonIgnore
     @JoinColumn
     @ManyToOne
     private Category category;
     
-    @OneToMany(mappedBy = "products")
+    @OneToMany(mappedBy = "product")
     @JsonIgnore
     private List<Piece> pieces;
     

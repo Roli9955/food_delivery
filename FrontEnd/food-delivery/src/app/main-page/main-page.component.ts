@@ -4,6 +4,9 @@ import { User } from '../classes/user';
 import { Product } from '../classes/product';
 import { Piece } from '../classes/piece';
 import { ProductService } from '../services/product.service';
+import { CartService } from '../services/cart.service';
+import { MatSnackBar } from '@angular/material';
+import { ReservationService } from '../services/reservation.service';
 
 @Component({
   selector: 'app-main-page',
@@ -15,18 +18,67 @@ export class MainPageComponent implements OnInit {
   private _user: User;
   private products: Product[] = [];
 
-  map = new Map<Product, number>() ;
 
   constructor(
-    private userService: UserService,
-    private productSevice: ProductService
+    private productSevice: ProductService,
+    private reservationService: ReservationService,
+    private _cartService: CartService,
+    private snackBar: MatSnackBar
   ) { }
 
-  ngOnInit() {
-    this._user = this.userService.getUser();
-    this.map.clear();
-    this.products = this.productSevice.getFamousProduct();
+  async ngOnInit() {
+    await this.reservationService.getAllReservation().then((allReservation) => {
+      const pieces: Piece[] = [];
+      for(let reservation of allReservation){
+        for(let piece of reservation.pieces){
+          pieces.push(piece);
+        }
+      }
+      const mergePiece: Piece[] = [];
+      for(let piece of pieces){
+        this.findAndAdd(piece, mergePiece);
+      }
+      
+      var n:number = 0; 
+      while(n < 3){
+        this.setMax(mergePiece);
+        n++;
+      }
+
+    });
   }
 
+  private findAndAdd(piece: Piece, array: Piece[]): boolean{
+    for(let p of array){
+      if(p.product.id == piece.product.id){
+        p.piece += piece.piece;
+        return
+      }
+    }
+    array.push(piece);
+  }
+
+  private setMax(array: Piece[]): void{
+    var index = 0;
+    var max: Piece = array[index];
+    var i: number = 0;
+    while(i < array.length){
+      if(array[i].piece > max.piece){
+        max = array[i];
+        index = i;
+      }
+      i++;
+    }
+    this.products.push(max.product);
+    array.splice(index, 1);
+
+  }
+
+  addToCart(id: number){
+    this._cartService.addProductTocart(id);
+    this.snackBar.open('A terméket hozzáadtuk a kosárhoz!', '', {
+      duration: 1500
+    });
+  }
   
 }

@@ -3,12 +3,13 @@ package hu.elte.Food_delivery.controller;
 import hu.elte.Food_delivery.entities.Category;
 import hu.elte.Food_delivery.entities.Product;
 import hu.elte.Food_delivery.repositories.CategoryRepository;
+import hu.elte.Food_delivery.repositories.PieceRepository;
 import hu.elte.Food_delivery.repositories.ProductRepository;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/product")
 public class ProductController {
@@ -25,6 +27,9 @@ public class ProductController {
     
     @Autowired
     private CategoryRepository categoryRepository;
+    
+    @Autowired
+    private PieceRepository pieceRepository;
     
     @GetMapping("")
     public ResponseEntity<Iterable<Product>> getAll(){
@@ -48,7 +53,7 @@ public class ProductController {
         return ResponseEntity.ok(oProduct.get());
     }
     
-    @DeleteMapping("/{id}")
+    /*@DeleteMapping("/{id}")
     @Secured({ "ROLE_ADMIN" })
     public ResponseEntity delete(@PathVariable Integer id){
         Optional<Product> oProduct = productRepository.findById(id);
@@ -57,7 +62,7 @@ public class ProductController {
         }
         productRepository.delete(oProduct.get());
         return ResponseEntity.ok().build();
-    }
+    }*/
     
     @PutMapping("/{id}")
     @Secured({ "ROLE_ADMIN" })

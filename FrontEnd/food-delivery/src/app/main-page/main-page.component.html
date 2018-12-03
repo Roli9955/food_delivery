@@ -1,4 +1,4 @@
-<h2 align="center">Legtöbbet rendelt termékek:</h2>
+<h2 align="center">A 3 legtöbbet rendelt termékek:</h2>
 
 <mat-grid-list cols="3" rowHeight="380">
   <mat-grid-tile *ngFor="let product of products">
@@ -14,9 +14,9 @@
       <img src="{{ product.url }}">
       <mat-card-content>{{ product.description }}</mat-card-content>
       <mat-card-actions align="right">
-          <button mat-flat-button routerLink="product-list/cart/{{ product.id }}" type="submit" disabled="{{ product.outOfOrder }}">
-            Kosárba
-          </button>
+        <button mat-flat-button (click)="addToCart( product.id )" type="submit" disabled="{{ product.outOfOrder }}">
+          Kosárba
+        </button>
         </mat-card-actions>
     </mat-card>
   </mat-grid-tile>

@@ -1,0 +1,26 @@
+<form [formGroup]="userForm" (ngSubmit)="updateUser()">
+    <div class="user-container">
+        <mat-form-field>
+        <input matInput type="text" formControlName="name" placeholder="Név" required>
+        </mat-form-field>
+        <mat-form-field>
+        <input matInput type="email" formControlName="email" placeholder="E-mail cím">
+        </mat-form-field>
+        <mat-form-field>
+        <input matInput type="text" value="+36" formControlName="phoneNumber" placeholder="Telefonszám">
+        </mat-form-field>
+        <mat-form-field>
+        <input matInput type="text" maxlength="4" formControlName="postCode" placeholder="Irányítószám">
+        </mat-form-field>
+        <mat-form-field>
+        <input matInput type="text" formControlName="city" placeholder="Település">
+        </mat-form-field>
+        <mat-form-field>
+        <input matInput type="text" formControlName="street" placeholder="Közterület neve és jellege">
+        </mat-form-field>
+        <mat-form-field>
+        <input matInput type="text" formControlName="streetNumber" placeholder="Házszám">
+        </mat-form-field>
+        <button mat-button class="editButton" type="submit">Módosítás</button>
+    </div>
+</form> 

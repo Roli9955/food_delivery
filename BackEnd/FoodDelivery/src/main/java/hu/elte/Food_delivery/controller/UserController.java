@@ -18,7 +18,9 @@ import hu.elte.Food_delivery.repositories.UserRepository;
 import java.util.List;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -40,7 +42,7 @@ public class UserController {
     }
     
     @PostMapping("/register")
-    @Secured({ "ROLE_GUEST" })
+    //@Secured({ "ROLE_GUEST" })
     public ResponseEntity<User> post(@RequestBody User user) {
         Optional<User> oUser = userRepository.findByEmail(user.getEmail());
         if (oUser.isPresent()) {
@@ -94,23 +96,22 @@ public class UserController {
         return ResponseEntity.ok(oUser.get().getReservations());
     }
     
-    @PutMapping("/{id}/reservations")
+    @PutMapping("/{id}/reservation/{id2}")
     @Secured({ "ROLE_ADMIN", "ROLE_DISPATCHER" })
-    public ResponseEntity<Iterable<Reservation>> putReservations(@PathVariable Integer id,
-                                                                 @RequestBody List<Reservation> reservations) {
+    public ResponseEntity<Iterable<Reservation>> putReservations(@PathVariable("id") Integer id,
+                                                                 @PathVariable("id2") Integer reservationId) {
         Optional<User> oUser = userRepository.findById(id);
         if (!oUser.isPresent()) {
             return ResponseEntity.notFound().build();
         }
-        for (Reservation reservation: reservations) {
-            Optional<Reservation> oReservation  = reservationRepository.findById(reservation.getId());
-            if (!oReservation.isPresent()) {
-                continue;
-            }
-            
-            oReservation.get().setDeliverer(oUser.get());
-            reservationRepository.save(oReservation.get());
+        
+        Optional<Reservation> oReservation  = reservationRepository.findById(reservationId);
+        if (!oReservation.isPresent()) {
+            return ResponseEntity.notFound().build();
         }
+
+        oReservation.get().setDeliverer(oUser.get());
+        reservationRepository.save(oReservation.get());
         
         return ResponseEntity.ok(oUser.get().getReservationDelivery());
     }

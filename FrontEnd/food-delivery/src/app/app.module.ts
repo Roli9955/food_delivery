@@ -19,7 +19,9 @@ import {
   MatSelectModule,
   MatTableModule,
   MatSnackBarModule,
-  MatExpansionModule} from '@angular/material';
+  MatExpansionModule,
+  MatNativeDateModule,
+  MatDialogModule} from '@angular/material';
 import { UserRegistrationLoginComponent } from './user-registration-login/user-registration-login.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -28,6 +30,7 @@ import { CartComponent } from './cart/cart.component';
 import { ReservationCommitComponent } from './reservation-commit/reservation-commit.component';
 import { MyReservationsComponent } from './my-reservations/my-reservations.component';
 import { MainPageComponent } from './main-page/main-page.component';
+import { UserManagementComponent, UserManagementDialogComponent } from './user-management/user-management.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,9 @@ import { MainPageComponent } from './main-page/main-page.component';
     CartComponent,
     ReservationCommitComponent,
     MyReservationsComponent,
-    MainPageComponent
+    MainPageComponent,
+    UserManagementComponent,
+    UserManagementDialogComponent
   ],
   imports: [
     FormsModule,
@@ -60,8 +65,12 @@ import { MainPageComponent } from './main-page/main-page.component';
     ReactiveFormsModule,
     MatTableModule,
     MatSnackBarModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatNativeDateModule,
+    MatDialogModule
   ],
+  entryComponents: [UserManagementComponent, UserManagementDialogComponent],
+  //declarations: [DialogOverviewExample, DialogOverviewExampleDialog],
   providers: [],
   bootstrap: [AppComponent]
 })

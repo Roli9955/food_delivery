@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
-import { User } from '../classes/user';
+import { Reservation } from '../classes/reservation';
+import { Piece } from '../classes/piece';
 
 @Component({
   selector: 'app-my-reservations',
@@ -9,16 +10,29 @@ import { User } from '../classes/user';
 })
 export class MyReservationsComponent implements OnInit {
 
-  private _user: User;
+  private reservations: Reservation[];
+  private pieces: Piece[];
 
-  private leftDisplayColumns = ['id', 'orderTime', 'message'];
+  private leftDisplayColumns = ['orderTime', 'message' , 'button'];
+  private rightDisplayColumns = ['pic', 'name', 'piece', 'price']
+
 
   constructor(
     private userService: UserService
   ) { }
 
-  ngOnInit() {
-    this._user = this.userService.getUser();
+  async ngOnInit() {
+    this.reservations = await this.userService.getReservations(4);
+  }
+
+  onClick(id: number){
+    console.log(id);
+
+    for(let reservation of this.reservations){
+      if(reservation.id === id){
+        this.pieces = reservation.pieces;
+      }
+    }
   }
 
 }

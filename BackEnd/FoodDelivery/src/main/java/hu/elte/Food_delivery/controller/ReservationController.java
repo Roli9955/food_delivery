@@ -3,16 +3,20 @@ package hu.elte.Food_delivery.controller;
 import hu.elte.Food_delivery.entities.Piece;
 import hu.elte.Food_delivery.entities.Product;
 import hu.elte.Food_delivery.entities.Reservation;
+import hu.elte.Food_delivery.entities.User;
 import hu.elte.Food_delivery.repositories.PieceRepository;
 import hu.elte.Food_delivery.repositories.ProductRepository;
 import hu.elte.Food_delivery.repositories.ReservationRepository;
+import hu.elte.Food_delivery.repositories.UserRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import javax.persistence.GenerationType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/reservation")
 public class ReservationController {
@@ -34,6 +39,9 @@ public class ReservationController {
     @Autowired
     private PieceRepository pieceRepository;
     
+    @Autowired
+    private UserRepository userRepository;
+    
     @GetMapping("")
     @Secured({ "ROLE_ADMIN", "ROLE_DISPATCHER" })
     public ResponseEntity<Iterable<Reservation>> getAll(){
@@ -41,11 +49,34 @@ public class ReservationController {
         return ResponseEntity.ok(reservations);
     }
     
-    @PostMapping("")
+    
+    @PostMapping("/{id}")
     @Secured({ "ROLE_ADMIN", "ROLE_DISPATCHER", "ROLE_USER" })
-    public ResponseEntity<Reservation> post(@RequestBody Reservation reservation){
+    public ResponseEntity<Reservation> post(@RequestBody Reservation reservation, @PathVariable Integer id){
+       
+        Optional<User> oUser = userRepository.findById(id);
+        if(!oUser.isPresent()){
+            return ResponseEntity.notFound().build();
+        }
+        reservation.setUser(oUser.get());
         reservation.setId(null);
-       return ResponseEntity.ok(reservationRepository.save(reservation));
+        reservationRepository.save(reservation);
+        
+        List<Reservation> tmpReservation = new ArrayList<>();
+        tmpReservation.add(reservation);
+        
+        for(Piece piece: reservation.getPieces()){
+           Optional<Product> oProduct = productRepository.findById(piece.getProduct().getId());
+           if(!oProduct.isPresent()){
+               return ResponseEntity.notFound().build();
+           }
+           piece.setId(null);
+           piece.setProduct(oProduct.get());
+           piece.setReservations(tmpReservation);
+           pieceRepository.save(piece);
+       }
+
+       return ResponseEntity.ok().build();
     }
     
     @GetMapping("/{id}")
@@ -58,7 +89,7 @@ public class ReservationController {
         return ResponseEntity.ok(oReservation.get());
     }
     
-    @DeleteMapping("/{id}")
+    /*@DeleteMapping("/{id}")
     @Secured({ "ROLE_ADMIN", "ROLE_DISPATCHER" })
     public ResponseEntity delete(@PathVariable Integer id){
         Optional<Reservation> oReservation = reservationRepository.findById(id);
@@ -67,9 +98,9 @@ public class ReservationController {
         }
         reservationRepository.delete(oReservation.get());
         return ResponseEntity.ok().build();
-    }
+    }*/
     
-    @PutMapping("/{id}")
+    /*@PutMapping("/{id}")
     @Secured({ "ROLE_ADMIN", "ROLE_DISPATCHER" })
     public ResponseEntity<Reservation> put(@PathVariable Integer id, 
                                         @RequestBody Reservation reservation){
@@ -79,7 +110,7 @@ public class ReservationController {
         }
         reservation.setId(id);
         return ResponseEntity.ok(reservationRepository.save(reservation));
-    }
+    }*/
     
     @DeleteMapping("/{id}/product")
     @Secured({ "ROLE_ADMIN", "ROLE_DISPATCHER" })
@@ -95,7 +126,7 @@ public class ReservationController {
                 if(!oProduct.isPresent()){
                     return ResponseEntity.notFound().build();
                 }
-                if(p.getProducts().getId().equals(pr.getId())){
+                if(p.getProduct().getId().equals(pr.getId())){
                     pieceRepository.delete(p);
                     break;
                 }
@@ -117,7 +148,7 @@ public class ReservationController {
         for(Piece piece: pieces){
             Boolean l = false;
             for(Piece p: oReservation.get().getPieces()){
-                if(Objects.equals(piece.getProducts().getId(), p.getProducts().getId())){
+                if(Objects.equals(piece.getProduct().getId(), p.getProduct().getId())){
                     p.setPiece(piece.getPiece());
                     pieceRepository.save(p);
                     l = true;
@@ -125,11 +156,11 @@ public class ReservationController {
                 }
             }
             if(l) continue;
-            Optional<Product> oProduct = productRepository.findById(piece.getProducts().getId());
+            Optional<Product> oProduct = productRepository.findById(piece.getProduct().getId());
             if(!oProduct.isPresent()){
                 return ResponseEntity.notFound().build();
             }
-            piece.setProducts(oProduct.get());
+            piece.setProduct(oProduct.get());
             piece.setId(null);
             piece.setReservations(pieceReservation);
             oReservation.get().getPieces().add(piece);

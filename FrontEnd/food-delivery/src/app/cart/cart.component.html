@@ -22,7 +22,7 @@
 
     <ng-container matColumnDef="button">
         <th mat-header-cell *matHeaderCellDef> Törlés </th>
-        <td mat-cell *matCellDef="let piece"> <button id="{{ piece.id }}" (click)="onClick($event)">Törlés</button> </td>
+        <td mat-cell *matCellDef="let piece"> <button mat-button (click)="onClickDeleteOneProduct( piece.id )">Törlés</button> </td>
     </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
@@ -31,5 +31,5 @@
 </div>
 <div align="center">
   <button class="final" mat-button (click)="onClickDelete()">Kosár törlése</button>
-  <button class="final" mat-button routerLink="reservation">Rendelés</button>
+  <button class="final" mat-button routerLink="reservation" disabled="{{ (_pieces.length == 0)? true : false }}">Rendelés</button>
 </div>

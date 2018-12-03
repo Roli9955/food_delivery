@@ -12,7 +12,7 @@
         <img src="{{ product.url }}">
         <mat-card-content>{{ product.description }}</mat-card-content>
         <mat-card-actions align="right">
-            <button mat-flat-button routerLink="cart/{{ product.id }}" type="submit" disabled="{{ product.outOfOrder }}">
+            <button mat-flat-button (click)="addToCart( product.id )" type="submit" disabled="{{ product.outOfOrder }}">
               Kosárba
             </button>
           </mat-card-actions>

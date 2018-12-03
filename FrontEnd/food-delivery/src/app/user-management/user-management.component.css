@@ -1,0 +1,22 @@
+td{
+    width: 10%;
+}
+
+table{
+    width: 100%;
+}
+
+button {
+    background-color: lightgray;
+}
+
+
+.user-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+.user-container > * {
+  width: 95%;
+  margin: auto;
+}

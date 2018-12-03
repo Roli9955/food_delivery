@@ -1,34 +1,35 @@
+<form [formGroup]="reservationForm" (ngSubmit)="reservationCommit()">
 <div calss="container">
   <div class="row">
     <div class="col-6">  
       <div class="form-container">
         <mat-form-field>
-          <input matInput value="{{ _user.name }}" type="text" placeholder="Név">
+          <input matInput value="{{ _user.name }}" formControlName="name" type="text" placeholder="Név">
         </mat-form-field>
         <mat-form-field>
-          <input matInput value="{{ _user.email }}" type="email" placeholder="E-mail cím">
+          <input matInput value="{{ _user.email }}" formControlName="email" type="email" placeholder="E-mail cím">
         </mat-form-field>
         <mat-form-field>
-          <input matInput value="{{ _user.phone }}" type="text" value="" placeholder="Telefonszám">
+          <input matInput value="{{ _user.phoneNumber }}" formControlName="phoneNumber" type="text" value="" placeholder="Telefonszám" required>
         </mat-form-field>
         <mat-form-field>
-          <textarea matInput placeholder="Üzenet"></textarea>
+          <textarea matInput formControlName="message" placeholder="Üzenet"></textarea>
         </mat-form-field>
       </div>
     </div>
     <div class="col-6">  
       <div class="form-container">
         <mat-form-field>
-          <input matInput value="{{ _user.postCode }}" type="text" maxlength="4" placeholder="Irányítószám">
+          <input matInput value="{{ _user.postCode }}" formControlName="postCode" type="text" maxlength="4" placeholder="Irányítószám" required>
         </mat-form-field>
         <mat-form-field>
-          <input matInput value="{{ _user.city }}" type="text" placeholder="Település">
+          <input matInput value="{{ _user.city }}" formControlName="city" type="text" placeholder="Település" required>
         </mat-form-field>
         <mat-form-field>
-          <input matInput value="{{ _user.street }}" type="text" placeholder="Közterület neve és jellege">
+          <input matInput value="{{ _user.street }}" formControlName="street" type="text" placeholder="Közterület neve és jellege" required>
         </mat-form-field>
         <mat-form-field>
-          <input matInput value="{{ _user.streetNumber }}" type="text" placeholder="Házszám">
+          <input matInput value="{{ _user.streetNumber }}" formControlName="streetNumber" type="text" placeholder="Házszám" required>
         </mat-form-field>
       </div>
     </div>
@@ -62,5 +63,6 @@
     </table>
   </div>
   <div align="center">
-    <a class="final" mat-button (click)="reservationCommit()" routerLink="">Rendelés véglegesítése</a>
+    <button class="final" mat-button type="submit">Rendelés véglegesítése</button>
   </div>
+</form>

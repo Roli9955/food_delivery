@@ -2,6 +2,7 @@ package hu.elte.Food_delivery.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
@@ -20,6 +21,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedDate;
 
 @Entity
 @Data
@@ -33,8 +36,7 @@ public class Reservation implements Serializable {
     private Integer id;
     
     @Column
-    @NotNull
-    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date orderTime;
     
     @Column

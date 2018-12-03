@@ -1,28 +1,30 @@
+<form [formGroup]="registrationForm" (ngSubmit)="registration()">
 <div class="registration-container">
   <h4>Regisztráció</h4>
   <mat-form-field>
-    <input matInput type="text" placeholder="Név">
+    <input matInput type="text" formControlName="name" placeholder="Név" required>
   </mat-form-field>
   <mat-form-field>
-    <input matInput type="email" placeholder="E-mail cím">
+    <input matInput type="email" formControlName="email" placeholder="E-mail cím">
   </mat-form-field>
   <mat-form-field>
-    <input matInput type="password" placeholder="Jelszó">
+    <input matInput type="password" formControlName="password" placeholder="Jelszó">
   </mat-form-field>
   <mat-form-field>
-    <input matInput type="text" value="+36" placeholder="Telefonszám">
+    <input matInput type="text" value="+36" formControlName="phoneNumber" placeholder="Telefonszám">
   </mat-form-field>
   <mat-form-field>
-    <input matInput type="text" maxlength="4" placeholder="Irányítószám">
+    <input matInput type="text" maxlength="4" formControlName="postCode" placeholder="Irányítószám">
   </mat-form-field>
   <mat-form-field>
-    <input matInput type="text" placeholder="Település">
+    <input matInput type="text" formControlName="city" placeholder="Település">
   </mat-form-field>
   <mat-form-field>
-    <input matInput type="text" placeholder="Közterület neve és jellege">
+    <input matInput type="text" formControlName="street" placeholder="Közterület neve és jellege">
   </mat-form-field>
   <mat-form-field>
-    <input matInput type="text" placeholder="Házszám">
+    <input matInput type="text" formControlName="streetNumber" placeholder="Házszám">
   </mat-form-field>
-  <button mat-button>Regisztráció</button>
+  <button mat-button type="submit">Regisztráció</button>
 </div>
+</form>

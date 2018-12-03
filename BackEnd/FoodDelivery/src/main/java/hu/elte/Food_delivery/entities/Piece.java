@@ -42,5 +42,5 @@ public class Piece implements Serializable{
     
     @JoinColumn
     @ManyToOne
-    private Product products;
+    private Product product;
 }

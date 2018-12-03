@@ -3,6 +3,8 @@ import { Product } from '../classes/product';
 import { ProductService } from '../services/product.service';
 import { FormBuilder } from '@angular/forms';
 import { fbind } from 'q';
+import { CartService } from '../services/cart.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-product-list',
@@ -13,21 +15,20 @@ export class ProductListComponent implements OnInit {
 
   private _products : Product[];
 
-  private productButton = this.fb.group({
-    button: ['']
-  })
-
   constructor(
     private _productService: ProductService,
-    private fb: FormBuilder
+    private _cartService: CartService,
+    private snackBar: MatSnackBar
   ) { }
 
-  ngOnInit() {
-    this._products = this._productService.getProducts();
+  async ngOnInit() {
+    this._products = await this._productService.getProducts();
   }
-  addToCart(){
-    const id: number = parseInt(this.productButton.get('button').value);
-    console.log(id);
+  addToCart(id: number){
+    this._cartService.addProductTocart(id);
+    this.snackBar.open('A terméket hozzáadtuk a kosárhoz!', '', {
+      duration: 1500
+    });
   }
 
 }
