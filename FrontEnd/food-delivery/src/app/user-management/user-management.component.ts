@@ -3,7 +3,6 @@ import { UserService } from '../services/user.service';
 import { User } from '../classes/user';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { async } from 'q';
 
 export interface UserManagement{
   user: User;

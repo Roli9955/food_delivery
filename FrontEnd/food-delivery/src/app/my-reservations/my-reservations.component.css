@@ -1,9 +1,14 @@
+.main{
+    width: 50%;
+    vertical-align: top;
+}
+
 td{
     width: 30%;
 }
 
 table{
-    width: 99%;
+    width: 100%;
 }
 
 

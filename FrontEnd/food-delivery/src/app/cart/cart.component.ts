@@ -1,7 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { CartService } from '../services/cart.service';
 import { Piece } from '../classes/piece';
-import { EventEmitter } from 'events';
 
 @Component({
   selector: 'app-cart',
@@ -9,7 +8,6 @@ import { EventEmitter } from 'events';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  @Output() updateView = new EventEmitter();
 
   private _pieces: Piece[];
   
@@ -19,18 +17,13 @@ export class CartComponent implements OnInit {
     private cartService: CartService
   ) { }
 
-  ngOnInit() {
-    this._pieces = this.cartService.getPieces();
+  async ngOnInit() {
+    this._pieces = await this.cartService.getPieces();
   }
 
   async onClickDeleteOneProduct(id: number){
     this.cartService.deleteOneProduct(id);
-    for(let piece of this._pieces){
-      if(piece.id === id){
-        const index = this._pieces.indexOf(piece);
-        this._pieces.splice(index, 1);
-      }
-    }
+    this._pieces = await this.cartService.getPieces();
   }
 
   onClickDelete(){

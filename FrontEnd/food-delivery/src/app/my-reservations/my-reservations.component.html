@@ -1,5 +1,6 @@
-  <mat-grid-list cols="2" rowHeight="fit" style="height: 100%; margin: 0">
-    <mat-grid-tile fit>
+ <table>
+   <tr>
+     <td class="main">
       <table mat-table [dataSource]="reservations" class="mat-elevation-z1">
 
         <ng-container matColumnDef="orderTime">
@@ -20,34 +21,33 @@
         <tr mat-header-row *matHeaderRowDef="leftDisplayColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: leftDisplayColumns;"></tr>
       </table>
-    </mat-grid-tile>
-
-    <mat-grid-tile>
-        <table mat-table [dataSource]="pieces" class="mat-elevation-z1">
+     </td>
+     <td class="main">
+      <table mat-table [dataSource]="pieces" class="mat-elevation-z1">
   
-          <ng-container matColumnDef="pic">
-              <th mat-header-cell *matHeaderCellDef></th>
-              <td mat-cell *matCellDef="let pieces"> <img src="{{ pieces.product.url}}"> </td>
-            </ng-container>
-
-            <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef> Termék neve </th>
-              <td mat-cell *matCellDef="let pieces"> {{ pieces.product.name }} </td>
-            </ng-container>
-  
-          <ng-container matColumnDef="piece">
-            <th mat-header-cell *matHeaderCellDef> Darab </th>
-            <td mat-cell *matCellDef="let pieces"> {{ pieces.piece }} </td>
+        <ng-container matColumnDef="pic">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let pieces"> <img src="{{ pieces.product.url}}"> </td>
           </ng-container>
 
-          <ng-container matColumnDef="price">
-            <th mat-header-cell *matHeaderCellDef> Termék ára </th>
-            <td mat-cell *matCellDef="let pieces"> {{ pieces.product.price }} </td>
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Termék neve </th>
+            <td mat-cell *matCellDef="let pieces"> {{ pieces.product.name }} </td>
           </ng-container>
-  
-          <tr mat-header-row *matHeaderRowDef="rightDisplayColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: rightDisplayColumns;"></tr>
-        </table>
-      </mat-grid-tile>
 
-  </mat-grid-list>
+        <ng-container matColumnDef="piece">
+          <th mat-header-cell *matHeaderCellDef> Darab </th>
+          <td mat-cell *matCellDef="let pieces"> {{ pieces.piece }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef> Termék ára </th>
+          <td mat-cell *matCellDef="let pieces"> {{ pieces.product.price }} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="rightDisplayColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: rightDisplayColumns;"></tr>
+      </table>
+    </td>
+   </tr>
+ </table>

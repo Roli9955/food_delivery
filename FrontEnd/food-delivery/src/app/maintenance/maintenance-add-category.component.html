@@ -1,0 +1,8 @@
+<form [formGroup]="categoryForm" (ngSubmit)="addCategory()">
+    <div class="container">
+        <mat-form-field>
+        <input matInput type="text" formControlName="name" placeholder="Kategória neve" required>
+        </mat-form-field>
+        <button mat-button trype="submit">Hozzáadás</button>
+    </div>
+</form>

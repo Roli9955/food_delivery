@@ -1,0 +1,80 @@
+<table class="main">
+  <tr>
+    <td class="category-td">
+      <h3>Kategóriák</h3>
+
+      <table mat-table [dataSource]="categories" class="mat-elevation-z1">
+
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> Id. </th>
+            <td mat-cell *matCellDef="let categories"> {{ categories.id }} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Kategória neve </th>
+            <td mat-cell *matCellDef="let categories"> {{ categories.name }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="numberOfProducts">
+              <th mat-header-cell *matHeaderCellDef> Termékek száma </th>
+              <td mat-cell *matCellDef="let categories"> {{ categories.products.length }} </td>
+            </ng-container>
+  
+          <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let categories"> <button mat-button type="submit">Módosítás</button> </td>
+          </ng-container>
+  
+          <tr mat-header-row *matHeaderRowDef="categoryDisplay"></tr>
+          <tr mat-row *matRowDef="let row; columns: categoryDisplay;"></tr>
+      </table>
+
+      <button mat-button class="newAdd" (click)="addNewCategory()">Új hozzáadása</button>
+
+    </td>
+
+    <td class="product-td">
+        <h3>Termékek</h3>
+      
+        <table mat-table [dataSource]="products" class="mat-elevation-z1">
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> </th>
+          <td mat-cell *matCellDef="let products"> <img src="{{ products.url }}"> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Termék neve </th>
+          <td mat-cell *matCellDef="let products"> {{ products.name }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="category">
+            <th mat-header-cell *matHeaderCellDef> Kategória </th>
+            <td mat-cell *matCellDef="let products"> {{ products.category.name }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="price">
+              <th mat-header-cell *matHeaderCellDef> Ár </th>
+              <td mat-cell *matCellDef="let products"> {{ products.price }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="outOfOrder">
+                <th mat-header-cell *matHeaderCellDef> Kategória </th>
+                <td mat-cell *matCellDef="let products"> {{ (products.outOfOrder)? 'Elfogyott' : 'Rendelhető' }} </td>
+              </ng-container>
+
+
+        <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef> </th>
+          <td mat-cell *matCellDef="let products"> <button mat-button type="submit">Módosítás</button> </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="productDisplay"></tr>
+        <tr mat-row *matRowDef="let row; columns: productDisplay;"></tr>
+      </table>
+
+      <button mat-button class="newAdd">Új hozzáadása</button>
+
+    </td>
+  </tr>
+</table>

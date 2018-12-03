@@ -31,6 +31,7 @@ import { ReservationCommitComponent } from './reservation-commit/reservation-com
 import { MyReservationsComponent } from './my-reservations/my-reservations.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { UserManagementComponent, UserManagementDialogComponent } from './user-management/user-management.component';
+import { MaintenanceComponent, MaintenanceComponentDialog } from './maintenance/maintenance.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,9 @@ import { UserManagementComponent, UserManagementDialogComponent } from './user-m
     MyReservationsComponent,
     MainPageComponent,
     UserManagementComponent,
-    UserManagementDialogComponent
+    UserManagementDialogComponent,
+    MaintenanceComponent,
+    MaintenanceComponentDialog
   ],
   imports: [
     FormsModule,
@@ -69,8 +72,7 @@ import { UserManagementComponent, UserManagementDialogComponent } from './user-m
     MatNativeDateModule,
     MatDialogModule
   ],
-  entryComponents: [UserManagementComponent, UserManagementDialogComponent],
-  //declarations: [DialogOverviewExample, DialogOverviewExampleDialog],
+  entryComponents: [UserManagementComponent, UserManagementDialogComponent, MaintenanceComponent, MaintenanceComponentDialog],
   providers: [],
   bootstrap: [AppComponent]
 })

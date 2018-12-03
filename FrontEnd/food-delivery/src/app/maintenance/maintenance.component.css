@@ -1,0 +1,52 @@
+.main{
+    width: 100%;
+}
+
+.category-td{
+    width:35%;
+    vertical-align: top;
+}
+
+.product-td{
+    width:50%;
+}
+
+button{
+    background-color: lightgray;
+}
+
+h3{
+    margin-top: 15px;
+    text-align: center;
+}
+
+table{
+    width: 100%;
+    padding-top: 15px;
+    
+}
+
+td{
+    width: 20%;
+    
+}
+
+img {
+    width: 35%;
+    padding: 5px;
+}
+
+.newAdd{
+    margin-top: 15px;
+    margin-left: 5px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+.container > * {
+  width: 95%;
+  margin: auto;
+}

@@ -7,6 +7,7 @@ import { ReservationCommitComponent } from '../reservation-commit/reservation-co
 import { MyReservationsComponent } from '../my-reservations/my-reservations.component';
 import { MainPageComponent } from '../main-page/main-page.component';
 import { UserManagementComponent } from '../user-management/user-management.component';
+import { MaintenanceComponent } from '../maintenance/maintenance.component';
 
 const routes: Routes = [
   {path: 'login',  component: UserRegistrationLoginComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: 'cart/reservation', component: ReservationCommitComponent},
   {path: 'my-reservations', component: MyReservationsComponent},
   {path: '', component: MainPageComponent},
-  {path: 'user-management', component: UserManagementComponent}
+  {path: 'user-management', component: UserManagementComponent},
+  {path: 'maintenance', component: MaintenanceComponent}
 ];
 
 @NgModule({
