@@ -3,7 +3,7 @@
 
 #### A megrendeléseket a vásárlók a webes felületen keresztül adhatják le. 
 
-- A weblap főoldalán megjelennek a kategóriák (pl. levesek, pizzák, üdítők), valamint a 3 legnépszerűbb (legtöbbet rendelt) étel/ital. 
+- A weblap főoldalán megjelennek a kategóriák (pl. levesek, pizzák, üdítők), valamint a 10 legnépszerűbb (legtöbbet rendelt) étel/ital. 
 - A kategóriát kiválasztva listázódnak a tételek (név és ár kíséretében), amelyek szűrhetőek név(részlet)re. Ételek esetén leírás is van. Külön meg vannak jelölve a csípős, illetve vegetáriánus ételek. 
 - Ételek és italok tetszőleges számban helyezhetőek a kosárba egy adott felső korlátig (20.000 Ft), afelett több terméket nem lehet a kosárba helyezni. 
 - A kosár tartalma bármikor megtekinthető, ekkor látszódnak a felvett tételek, illetve látható az összár. Bármely tétel kivehető a kosárból. 
@@ -39,6 +39,9 @@ Kapcsolat(ok): PRODUCT(ID) - PIECE(Product_ID)
 Kapcsolat(ok): PIECE(PIECE_ID) - RESERVATION_has_PIECE(PIECE_ID), RESERVATION_has_PIECE(RESERVATION_ID) - RESERVATION(ID)
 - A USER és RESERVATION táblák között is 1 az N-hez kapcsolat van, hiszen 1 felhasználónak töb rendelése is lehet, de 1 rendelés nem tartozhat több felhasználóhoz.
 Kapcsolat(ok): USER(ID) - RESERVATION(User-ID)
+
+#### Use-Case:
+![food_delivery_use-case](https://user-images.githubusercontent.com/26537226/49343614-2c4e5780-f66d-11e8-860e-11084edc3127.png)
 
 #### Végpontok:
 
