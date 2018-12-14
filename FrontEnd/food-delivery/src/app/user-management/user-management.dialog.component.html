@@ -21,6 +21,14 @@
         <mat-form-field>
         <input matInput type="text" formControlName="streetNumber" placeholder="Házszám">
         </mat-form-field>
+        <mat-form-field>
+        <mat-select formControlName="permission" placeholder="Jogosultság">
+            <mat-option value="ROLE_ADMIN">ROLE_ADMIN</mat-option>
+            <mat-option value="ROLE_DISPATCHER">ROLE_DISPATCHER</mat-option>
+            <mat-option value="ROLE_DELIVERER">ROLE_DELIVERER</mat-option>
+            <mat-option value="ROLE_USER">ROLE_USER</mat-option>
+        </mat-select>
+        </mat-form-field>
         <button mat-button class="editButton" type="submit">Módosítás</button>
     </div>
 </form> 

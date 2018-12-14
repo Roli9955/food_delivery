@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Piece } from '../classes/piece';
 import { ProductService } from './product.service';
 import { Product } from '../classes/product';
+import { ResolveEnd } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -58,9 +59,24 @@ export class CartService {
     }
   }
 
-  async addProductTocart(id: number){
+  async addProductTocart(id: number): Promise<boolean>{
+
+    var enable: boolean = true;
+
     const product = await this.productService.getProductById(id).then((reason: Product) => {
       const size: number = this._pieces.length;
+
+      var sum = 0;
+      for(let p of this._pieces){
+        sum += p.piece * p.product.price
+      }
+      sum += reason.price;
+      console.log(sum);
+      if(sum > 20000){
+        enable = false;
+        return;
+      }
+
       for(let p of this._pieces){
         if(p.product.id === reason.id){
           p.piece += 1;
@@ -72,7 +88,9 @@ export class CartService {
       piece.piece = 1;
       piece.product = reason;
       this.addPiece(piece);
-    });      
+    });   
+    console.log(enable);
+    return enable;
     
   }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { Reservation } from '../classes/reservation';
 import { Piece } from '../classes/piece';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-my-reservations',
@@ -18,11 +19,12 @@ export class MyReservationsComponent implements OnInit {
 
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private authService: AuthService
   ) { }
 
   async ngOnInit() {
-    this.reservations = await this.userService.getReservations(4);
+    this.reservations = await this.userService.getReservations(this.authService.getUser().id);
   }
 
   onClick(id: number){

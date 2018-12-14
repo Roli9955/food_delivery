@@ -1,3 +1,14 @@
+ <div align="center" class="filter">
+    <form [formGroup]="categoryForm">
+      <span style="padding-right:10px">Szűrő: </span>
+      <mat-form-field>
+          <mat-select (selectionChange)="filter($event)" [(value)]="selected" placeholder="Kategória" matNativeControl>
+            <mat-option value="0" selected="true">Összes</mat-option>
+            <mat-option *ngFor="let category of categories"  value="{{category.id}}">{{ category.name }}</mat-option>
+          </mat-select>
+      </mat-form-field>
+    </form>
+ </div>
  <mat-grid-list cols="3" rowHeight="380">
     <mat-grid-tile *ngFor="let product of _products">
       <mat-card>

@@ -31,5 +31,5 @@
 </div>
 <div align="center">
   <button class="final" mat-button (click)="onClickDelete()">Kosár törlése</button>
-  <button class="final" mat-button routerLink="reservation" disabled="{{ (_pieces.length == 0)? true : false }}">Rendelés</button>
+  <button class="final" mat-button routerLink="reservation" disabled="{{ empty() }}">Rendelés</button>
 </div>

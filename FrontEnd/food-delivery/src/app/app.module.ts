@@ -21,7 +21,9 @@ import {
   MatSnackBarModule,
   MatExpansionModule,
   MatNativeDateModule,
-  MatDialogModule} from '@angular/material';
+  MatDialogModule,
+  MatCheckboxModule,
+  MatRadioModule} from '@angular/material';
 import { UserRegistrationLoginComponent } from './user-registration-login/user-registration-login.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -31,7 +33,9 @@ import { ReservationCommitComponent } from './reservation-commit/reservation-com
 import { MyReservationsComponent } from './my-reservations/my-reservations.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { UserManagementComponent, UserManagementDialogComponent } from './user-management/user-management.component';
-import { MaintenanceComponent, MaintenanceComponentDialog } from './maintenance/maintenance.component';
+import { MaintenanceComponent, 
+  MaintenanceComponentCategoryDialog, 
+  MaintenanceComponentProductDialog } from './maintenance/maintenance.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +52,8 @@ import { MaintenanceComponent, MaintenanceComponentDialog } from './maintenance/
     UserManagementComponent,
     UserManagementDialogComponent,
     MaintenanceComponent,
-    MaintenanceComponentDialog
+    MaintenanceComponentCategoryDialog,
+    MaintenanceComponentProductDialog
   ],
   imports: [
     FormsModule,
@@ -70,9 +75,17 @@ import { MaintenanceComponent, MaintenanceComponentDialog } from './maintenance/
     MatSnackBarModule,
     MatExpansionModule,
     MatNativeDateModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule,
+    MatRadioModule
   ],
-  entryComponents: [UserManagementComponent, UserManagementDialogComponent, MaintenanceComponent, MaintenanceComponentDialog],
+  entryComponents: [
+    UserManagementComponent, 
+    UserManagementDialogComponent, 
+    MaintenanceComponent, 
+    MaintenanceComponentCategoryDialog,
+    MaintenanceComponentProductDialog
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

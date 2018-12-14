@@ -43,7 +43,7 @@ public class ReservationController {
     private UserRepository userRepository;
     
     @GetMapping("")
-    @Secured({ "ROLE_ADMIN", "ROLE_DISPATCHER" })
+    //@Secured({ "ROLE_ADMIN", "ROLE_DISPATCHER" })
     public ResponseEntity<Iterable<Reservation>> getAll(){
         Iterable<Reservation> reservations = reservationRepository.findAll();
         return ResponseEntity.ok(reservations);

@@ -87,9 +87,12 @@ public class CategoryController {
         if(!oCategory.isPresent()){
             return ResponseEntity.notFound().build();
         }
-        product.setId(null);
-        product.setCategory(oCategory.get());
-        return ResponseEntity.ok(productRepository.save(product));
+        Optional<Product> oProduct = productRepository.findById(product.getId());
+        if(!oProduct.isPresent()){
+            return ResponseEntity.notFound().build();
+        }
+        oProduct.get().setCategory(oCategory.get());
+        return ResponseEntity.ok(productRepository.save(oProduct.get()));
     }
     
 }

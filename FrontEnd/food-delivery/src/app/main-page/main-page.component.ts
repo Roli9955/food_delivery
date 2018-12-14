@@ -74,11 +74,17 @@ export class MainPageComponent implements OnInit {
 
   }
 
-  addToCart(id: number){
-    this._cartService.addProductTocart(id);
-    this.snackBar.open('A terméket hozzáadtuk a kosárhoz!', '', {
-      duration: 1500
-    });
+  async addToCart(id: number){
+    if(await this._cartService.addProductTocart(id)){
+      this.snackBar.open('A terméket hozzáadtuk a kosárhoz!', '', {
+        duration: 1500
+      });
+    } else {
+      this.snackBar.open('A terméket nem sikerült hozzáadni a kosárhoz, mert elérte a rendelni kívánt termékek össze a maximumot. (20 000 Ft)!', '', {
+        duration: 1500
+      });
+    }
+    
   }
   
 }

@@ -2,8 +2,19 @@
   <a mat-button routerLink="">Főoldal</a>
   <a mat-button routerLink="product-list">Étlap</a>
   <a mat-button routerLink="cart">Kosár</a>
-  <a mat-button routerLink="login">Bejelentkezés</a>
-  <a mat-button routerLink="my-reservations">Rendeléseim</a>
-  <a mat-button routerLink="user-management">Felhasználó karbantartás</a>
-  <a mat-button routerLink="maintenance">Termék karbantartás</a>
+  <div *ngIf="authService.getIsLoggesIn()">
+    <a mat-button routerLink="my-reservations">Rendeléseim</a>
+  </div>
+  <div *ngIf="authService.getIsLoggesIn() && authService.getUser().role === 'ROLE_ADMIN'">
+    <a mat-button routerLink="user-management">Felhasználó karbantartás</a>
+    <a mat-button routerLink="maintenance">Termék karbantartás</a>
+  </div> 
+  <div class="spacer"></div>
+  <div *ngIf="!authService.getIsLoggesIn()">
+    <a mat-button routerLink="login">Bejelentkezés</a>
+  </div>
+  <div *ngIf="authService.getIsLoggesIn()">
+    {{ authService.getUser().name }}
+    <a mat-button (click)="authService.logout()">Kijelentkezés</a>
+  </div>
 </mat-toolbar>

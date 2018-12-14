@@ -7,3 +7,7 @@ mat-toolbar a {
 mat-toolbar{
     background-color: lightgrey;
 }
+
+mat-toolbar .spacer {
+    flex: 1 1 auto;
+  }

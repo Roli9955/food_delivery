@@ -20,4 +20,12 @@ export class ProductService {
   public getProductById(id: number): Promise<Product>{
     return this.httpService.get<Product>(this.route + "/" + id);
   }
+
+  public postProduct(product: Product): Promise<Product>{
+    return this.httpService.post<Product>(this.route + '/', product);
+  }
+
+  public putProduct(product: Product): Promise<Product>{
+    return this.httpService.put<Product>(this.route + '/', product)
+  }
 }

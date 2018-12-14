@@ -66,7 +66,8 @@ export class UserManagementDialogComponent{
     postCode: new FormControl('', Validators.required),
     city: new FormControl('', Validators.required),
     street: new FormControl('', Validators.required),
-    streetNumber: new FormControl('', Validators.required)
+    streetNumber: new FormControl('', Validators.required),
+    permission: new FormControl('', Validators.required)
   });
 
   constructor(
@@ -83,6 +84,7 @@ export class UserManagementDialogComponent{
       this.userForm.controls['city'].setValue(data.user.city);
       this.userForm.controls['street'].setValue(data.user.street);
       this.userForm.controls['streetNumber'].setValue(data.user.streetNumber);
+      this.userForm.controls['permission'].setValue(data.user.role);
 
     }
 
@@ -94,8 +96,9 @@ export class UserManagementDialogComponent{
     const city: string = this.userForm.get('city').value;
     const street: string = this.userForm.get('street').value;
     const streetNumber: string = this.userForm.get('streetNumber').value;
+    const role: string = this.userForm.get('permission').value;
 
-    if(!name || !email || !phoneNumber || !postCode || !city || !street || !streetNumber){
+    if(!name || !email || !phoneNumber || !postCode || !city || !street || !streetNumber || !role){
       return;
     }
 
@@ -106,6 +109,7 @@ export class UserManagementDialogComponent{
     this.data.user.city = city;
     this.data.user.street = street;
     this.data.user.streetNumber = streetNumber;
+    this.data.user.role = role;
 
     await this.userService.updateUser(this.data.user);
 

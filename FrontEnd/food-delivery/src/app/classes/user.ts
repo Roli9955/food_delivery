@@ -11,4 +11,5 @@ export class User {
     public street: string;
     public streetNumber: string;
     public reservations: Reservation[];
+    public role: string;
 }

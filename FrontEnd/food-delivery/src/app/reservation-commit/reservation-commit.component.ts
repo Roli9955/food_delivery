@@ -9,6 +9,7 @@ import { ReservationService } from '../services/reservation.service';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { Product } from '../classes/product';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-reservation-commit',
@@ -38,11 +39,16 @@ export class ReservationCommitComponent implements OnInit {
     private cartService: CartService,
     private reservationService: ReservationService,
     private snackBar: MatSnackBar,
-    private router: Router
-  ) { }
+    private router: Router,
+    private authService: AuthService
+  ) {
+    if(!this.authService.getIsLoggesIn()){
+      this.router.navigate(['/login']);
+    }
+   }
 
   async ngOnInit() {
-    this._user = await this.userService.getUserById(4);
+    this._user = await this.userService.getUserById(this.authService.getUser().id);
     this._pieces = this.cartService.getPieces();
 
     this.reservationForm.controls['name'].setValue(this._user.name);
@@ -79,6 +85,16 @@ export class ReservationCommitComponent implements OnInit {
     });
 
     this.router.navigate(['']);
+  }
+
+  getFinal(): number{
+    var sum: number = 0
+
+    for(let piece of this._pieces){
+      sum += piece.piece * piece.product.price
+    }
+
+    return sum;
   }
 
 }

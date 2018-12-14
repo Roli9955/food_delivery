@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import hu.elte.Food_delivery.repositories.UserRepository;
-import java.util.List;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -52,6 +51,15 @@ public class UserController {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole(User.Role.ROLE_USER);
         return ResponseEntity.ok(userRepository.save(user));
+    }
+    
+    @PutMapping("/login")
+    public ResponseEntity<User> login(@RequestBody String username) {
+        Optional<User> oUser = userRepository.findByEmail(username);
+        if (!oUser.isPresent()) {
+            return ResponseEntity.status(401).build();
+        }
+        return ResponseEntity.ok(oUser.get());
     }
     
     @GetMapping("/{id}")

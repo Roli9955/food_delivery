@@ -9,7 +9,7 @@ import { Piece } from '../classes/piece';
 })
 export class CartComponent implements OnInit {
 
-  private _pieces: Piece[];
+  public _pieces: Piece[] = [];
   
   private displayColumns = ['pic', 'productName', 'price', 'pieces', 'button'];
   
@@ -29,5 +29,13 @@ export class CartComponent implements OnInit {
   onClickDelete(){
     this._pieces = [];
     this.cartService.deleteSpaces();
+  }
+
+  public empty(): boolean{
+    if(this._pieces.length > 0){
+      return false;
+    } else {
+      return true;
+    }
   }
 }

@@ -8,6 +8,7 @@ import { MyReservationsComponent } from '../my-reservations/my-reservations.comp
 import { MainPageComponent } from '../main-page/main-page.component';
 import { UserManagementComponent } from '../user-management/user-management.component';
 import { MaintenanceComponent } from '../maintenance/maintenance.component';
+import { AuthGuard } from '../auth.guard';
 
 const routes: Routes = [
   {path: 'login',  component: UserRegistrationLoginComponent},
@@ -23,5 +24,9 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
+  
 })
-export class AppRoutingModule { }
+
+export class AppRoutingModule { 
+
+}

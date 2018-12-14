@@ -64,16 +64,18 @@ public class ProductController {
         return ResponseEntity.ok().build();
     }*/
     
-    @PutMapping("/{id}")
+    @PutMapping("")
     @Secured({ "ROLE_ADMIN" })
-    public ResponseEntity<Product> put(@PathVariable Integer id, 
-                                        @RequestBody Product product){
-        Optional<Product> oProduct = productRepository.findById(id);
+    public ResponseEntity<Product> put( @RequestBody Product product){
+        Optional<Product> oProduct = productRepository.findByName(product.getName());
         if(!oProduct.isPresent()){
             return ResponseEntity.notFound().build();
         }
-        product.setId(id);
-        return ResponseEntity.ok(productRepository.save(product));
+        oProduct.get().setName(product.getName());
+        oProduct.get().setDescription(product.getDescription());
+        oProduct.get().setOutOfOrder(product.getOutOfOrder());
+        oProduct.get().setPrice(product.getPrice());
+        return ResponseEntity.ok(productRepository.save(oProduct.get()));
     }
     
     @PutMapping("/{id}/category/{id2}")

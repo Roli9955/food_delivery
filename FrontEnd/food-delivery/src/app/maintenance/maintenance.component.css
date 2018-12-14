@@ -32,12 +32,12 @@ td{
 }
 
 img {
-    width: 35%;
+    width: 50%;
     padding: 5px;
 }
 
 .newAdd{
-    margin-top: 15px;
+    margin-bottom: 15px;
     margin-left: 5px;
 }
 
@@ -49,4 +49,8 @@ img {
 .container > * {
   width: 95%;
   margin: auto;
+}
+
+mat-radio-button{
+    padding-right: 10px; 
 }
