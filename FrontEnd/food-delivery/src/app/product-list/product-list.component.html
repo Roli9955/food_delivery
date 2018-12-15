@@ -1,11 +1,15 @@
  <div align="center" class="filter">
-    <form [formGroup]="categoryForm">
+    <form [formGroup]="searchForm">
       <span style="padding-right:10px">Szűrő: </span>
       <mat-form-field>
           <mat-select (selectionChange)="filter($event)" [(value)]="selected" placeholder="Kategória" matNativeControl>
             <mat-option value="0" selected="true">Összes</mat-option>
             <mat-option *ngFor="let category of categories"  value="{{category.id}}">{{ category.name }}</mat-option>
           </mat-select>
+      </mat-form-field>
+      <span style="padding-right:10px; padding-left:20px">Keresés: </span>
+      <mat-form-field>
+        <input matInput (keydown)="search($event)" formControlName="productName" type="text" placeholder="Termék neve">
       </mat-form-field>
     </form>
  </div>

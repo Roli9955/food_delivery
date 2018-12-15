@@ -42,7 +42,7 @@ export class AuthService {
     this.isLoggedIn = false;
     this.user = null;
     window.localStorage.setItem('token', '');
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 
   public loginWithToken() {

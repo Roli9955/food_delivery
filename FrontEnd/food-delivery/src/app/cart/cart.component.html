@@ -30,6 +30,6 @@
   </table>
 </div>
 <div align="center">
-  <button class="final" mat-button (click)="onClickDelete()">Kosár törlése</button>
+  <button class="final" mat-button (click)="onClickDelete()" disabled="{{ empty() }}">Kosár törlése</button>
   <button class="final" mat-button routerLink="reservation" disabled="{{ empty() }}">Rendelés</button>
 </div>

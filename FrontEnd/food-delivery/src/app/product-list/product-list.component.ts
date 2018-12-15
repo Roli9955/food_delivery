@@ -7,6 +7,7 @@ import { CartService } from '../services/cart.service';
 import { MatSnackBar } from '@angular/material';
 import { Category } from '../classes/category';
 import { CategoryService } from '../services/category.service';
+import { isUndefined } from 'util';
 
 @Component({
   selector: 'app-product-list',
@@ -19,16 +20,19 @@ export class ProductListComponent implements OnInit {
   private categories: Category[];
   private selected: number = 0;
 
-  private categoryForm = new FormGroup({
-    name: new FormControl('', Validators.required),
+  private searchForm = new FormGroup({
+    productName: new FormControl('')
   });
+
 
   constructor(
     private _productService: ProductService,
     private _cartService: CartService,
     private categoryService: CategoryService,
     private snackBar: MatSnackBar
-  ) { }
+  ) { 
+    
+  }
 
   async ngOnInit() {
     this._products = await this._productService.getProducts();
@@ -55,6 +59,36 @@ export class ProductListComponent implements OnInit {
         duration: 1500
       });
     }
+  }
+
+  async search(event){
+    var key: string = '';
+
+    if(event.code.includes('Key')){
+      key = this.searchForm.controls['productName'].value + event.key;
+    } else if(event.code.includes('Backspace')) {
+      var size: number = this.searchForm.controls['productName'].value.length;
+      key = this.searchForm.controls['productName'].value.substring(0, size-1);
+    } else {
+      return;
+    }
+
+    if(isUndefined(event) && key != ''){
+      this._products = await this._productService.getProducts();
+      this.searchForm.controls['productName'].setValue('');
+      console.log('hiba')
+      return;
+    }
+
+    this._products = await this._productService.getProducts().then((res: Product[]) => {
+      var products: Product[] = [];
+      for(let p of res){
+        if(p.name.toLowerCase().includes(key.toLowerCase())){
+          products.push(p);
+        }
+      }
+      return products;
+    });
   }
 
 }

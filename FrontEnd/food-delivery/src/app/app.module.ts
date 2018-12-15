@@ -23,7 +23,8 @@ import {
   MatNativeDateModule,
   MatDialogModule,
   MatCheckboxModule,
-  MatRadioModule} from '@angular/material';
+  MatRadioModule,
+  MatIconModule} from '@angular/material';
 import { UserRegistrationLoginComponent } from './user-registration-login/user-registration-login.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -77,7 +78,8 @@ import { MaintenanceComponent,
     MatNativeDateModule,
     MatDialogModule,
     MatSelectModule,
-    MatRadioModule
+    MatRadioModule,
+    MatIconModule
   ],
   entryComponents: [
     UserManagementComponent, 

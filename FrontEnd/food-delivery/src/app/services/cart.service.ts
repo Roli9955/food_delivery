@@ -9,34 +9,7 @@ import { ResolveEnd } from '@angular/router';
 })
 export class CartService {
 
-  private _pieces: Piece[] = [
-    {
-      id: 1,
-      piece: 1,
-      product: {
-        id: 1, 
-        name: 'Hamburger', 
-        price: 1000, 
-        outOfOrder: false, 
-        description: 'Finom', 
-        category: null, 
-        url: '../../img/hamburger.jpeg'
-      }
-    },
-    {
-      id: 2,
-      piece: 2,
-      product: {
-        id: 4, 
-        name: 'Lazac', 
-        price: 1000, 
-        outOfOrder: false, 
-        description: 'Drága', 
-        category: null, 
-        url: '../../img/salmon.jpeg'
-      }
-    }
-  ];
+  private _pieces: Piece[] = [];
 
   constructor(
     private productService: ProductService

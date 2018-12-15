@@ -14,11 +14,11 @@ const routes: Routes = [
   {path: 'login',  component: UserRegistrationLoginComponent},
   {path: 'product-list', component: ProductListComponent},
   {path: 'cart', component: CartComponent},
-  {path: 'cart/reservation', component: ReservationCommitComponent},
-  {path: 'my-reservations', component: MyReservationsComponent},
+  {path: 'cart/reservation', component: ReservationCommitComponent, canActivate: [AuthGuard]},
+  {path: 'my-reservations', component: MyReservationsComponent, canActivate: [AuthGuard]},
   {path: '', component: MainPageComponent},
-  {path: 'user-management', component: UserManagementComponent},
-  {path: 'maintenance', component: MaintenanceComponent}
+  {path: 'user-management', component: UserManagementComponent, canActivate: [AuthGuard]},
+  {path: 'maintenance', component: MaintenanceComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
