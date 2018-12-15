@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user.service';
-import { Reservation } from '../classes/reservation';
 import { Piece } from '../classes/piece';
-import { AuthService } from '../services/auth.service';
+import { Reservation } from '../classes/reservation';
+import { ReservationService } from '../services/reservation.service';
 
 @Component({
-  selector: 'app-my-reservations',
-  templateUrl: './my-reservations.component.html',
-  styleUrls: ['./my-reservations.component.css']
+  selector: 'app-all-reservation',
+  templateUrl: './all-reservation.component.html',
+  styleUrls: ['./all-reservation.component.css']
 })
-export class MyReservationsComponent implements OnInit {
+export class AllReservationComponent implements OnInit {
 
   private reservations: Reservation[];
   private pieces: Piece[];
@@ -19,12 +18,11 @@ export class MyReservationsComponent implements OnInit {
 
 
   constructor(
-    private userService: UserService,
-    private authService: AuthService
+    private reservationService: ReservationService,
   ) { }
 
   async ngOnInit() {
-    this.reservations = await this.userService.getReservations(this.authService.getUser().id);
+    this.reservations = await this.reservationService.getAllReservation();
   }
 
   onClick(id: number){

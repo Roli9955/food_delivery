@@ -37,6 +37,8 @@ import { UserManagementComponent, UserManagementDialogComponent } from './user-m
 import { MaintenanceComponent, 
   MaintenanceComponentCategoryDialog, 
   MaintenanceComponentProductDialog } from './maintenance/maintenance.component';
+import { AllReservationComponent } from './all-reservation/all-reservation.component';
+import { ReservationDeliverComponent, ReservationDeliverComponentDialog } from './reservation-deliver/reservation-deliver.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,10 @@ import { MaintenanceComponent,
     UserManagementDialogComponent,
     MaintenanceComponent,
     MaintenanceComponentCategoryDialog,
-    MaintenanceComponentProductDialog
+    MaintenanceComponentProductDialog,
+    AllReservationComponent,
+    ReservationDeliverComponent,
+    ReservationDeliverComponentDialog
   ],
   imports: [
     FormsModule,
@@ -86,7 +91,9 @@ import { MaintenanceComponent,
     UserManagementDialogComponent, 
     MaintenanceComponent, 
     MaintenanceComponentCategoryDialog,
-    MaintenanceComponentProductDialog
+    MaintenanceComponentProductDialog,
+    ReservationDeliverComponent,
+    ReservationDeliverComponentDialog
   ],
   providers: [],
   bootstrap: [AppComponent]

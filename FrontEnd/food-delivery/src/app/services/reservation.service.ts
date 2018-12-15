@@ -21,4 +21,12 @@ private url: string = 'reservation';
     return this.httpService.get<Reservation[]>(this.url);
   }
 
+  public getDeliverReservations(): Promise<Reservation[]>{
+    return this.httpService.get<Reservation[]>(this.url + '/deliverReservations');
+  }
+
+  public addDelivererToReservation(reservation: number, user: number){
+    this.httpService.put<Reservation>(this.url + '/' + reservation + '/deliverer/' + user, {});
+  }
+
 }

@@ -169,4 +169,31 @@ public class ReservationController {
         return ResponseEntity.ok(oReservation.get().getPieces());
     }
     
+    @GetMapping("/deliverReservations")
+    public ResponseEntity<Iterable<Reservation>> getNotDeliveredReservation(){
+        Iterable<Reservation> oReservations = reservationRepository.findByDelivererIsNull();
+        return ResponseEntity.ok(oReservations);
+    }
+    
+    @PutMapping("/{id}/deliverer/{id2}")
+    public ResponseEntity<Reservation> setDeliverer(@PathVariable("id") Integer reservation, @PathVariable("id2") Integer user){
+        Optional<Reservation> oReservation = reservationRepository.findById(reservation);
+        if(!oReservation.isPresent()){
+            return ResponseEntity.notFound().build();
+        }
+        
+        Optional<User> oUser = userRepository.findById(user);
+        if(!oUser.isPresent()){
+            return ResponseEntity.notFound().build();
+        }
+        
+        if(oUser.get().getRole() != User.Role.ROLE_DELIVERER){
+            return ResponseEntity.badRequest().build();
+        }
+        
+        oReservation.get().setDeliverer(oUser.get());
+        
+        return ResponseEntity.ok(reservationRepository.save(oReservation.get()));
+    }
+    
 }

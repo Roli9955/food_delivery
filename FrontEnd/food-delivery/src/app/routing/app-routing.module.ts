@@ -9,6 +9,8 @@ import { MainPageComponent } from '../main-page/main-page.component';
 import { UserManagementComponent } from '../user-management/user-management.component';
 import { MaintenanceComponent } from '../maintenance/maintenance.component';
 import { AuthGuard } from '../auth.guard';
+import { AllReservationComponent } from '../all-reservation/all-reservation.component';
+import { ReservationDeliverComponent } from '../reservation-deliver/reservation-deliver.component';
 
 const routes: Routes = [
   {path: 'login',  component: UserRegistrationLoginComponent},
@@ -18,7 +20,9 @@ const routes: Routes = [
   {path: 'my-reservations', component: MyReservationsComponent, canActivate: [AuthGuard]},
   {path: '', component: MainPageComponent},
   {path: 'user-management', component: UserManagementComponent, canActivate: [AuthGuard]},
-  {path: 'maintenance', component: MaintenanceComponent, canActivate: [AuthGuard]}
+  {path: 'maintenance', component: MaintenanceComponent, canActivate: [AuthGuard]},
+  {path: 'all-reservations', component: AllReservationComponent, canActivate: [AuthGuard]},
+  {path: 'reservation-deliver', component: ReservationDeliverComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

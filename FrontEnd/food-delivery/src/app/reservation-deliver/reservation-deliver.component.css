@@ -1,0 +1,38 @@
+.main{
+    width: 50%;
+    vertical-align: top;
+}
+
+td{
+    width: 30%;
+}
+
+table{
+    width: 100%;
+}
+
+
+button{
+    background-color: lightgray;
+}
+
+img{
+    width: 45%;
+    padding: 5px;
+}
+
+.deliver-button{
+    background-color: lightgray;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+.container > * {
+  width: 95%;
+  margin: auto;
+}

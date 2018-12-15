@@ -1,0 +1,10 @@
+<form [formGroup]="deliverForm" (ngSubmit)="saveDeliver()">
+    <div class="container">
+        <mat-form-field>
+            <mat-select formControlName="id" placeholder="Szállító">
+                <mat-option *ngFor="let user of deliverer"  value="{{user.id}}">{{ user.name }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button mat-button type="submit">Hozzárendelés</button>
+    </div>
+</form>

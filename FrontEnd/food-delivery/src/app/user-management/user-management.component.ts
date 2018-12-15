@@ -24,7 +24,7 @@ export class UserManagementComponent implements OnInit {
   constructor(
     private userService: UserService,
     private dialog: MatDialog,
-  ) { }
+  ) {}
 
   async ngOnInit() {
     this.users = await this.userService.getAllUser();

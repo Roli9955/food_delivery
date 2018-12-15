@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import hu.elte.Food_delivery.repositories.UserRepository;
+import java.util.Date;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -59,6 +60,8 @@ public class UserController {
         if (!oUser.isPresent()) {
             return ResponseEntity.status(401).build();
         }
+        oUser.get().setLastLogin(new Date());
+        userRepository.save(oUser.get());
         return ResponseEntity.ok(oUser.get());
     }
     

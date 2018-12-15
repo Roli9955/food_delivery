@@ -12,4 +12,5 @@ export class User {
     public streetNumber: string;
     public reservations: Reservation[];
     public role: string;
+    public lastLogin: Date;
 }

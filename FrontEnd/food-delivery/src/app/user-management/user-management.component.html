@@ -37,7 +37,7 @@
 
     <ng-container matColumnDef="lastLogin">
         <th mat-header-cell *matHeaderCellDef> Utolsó bejelentkezés </th>
-        <td mat-cell *matCellDef="let users"> {{ users.lastLogin | date:'yyyy. hh. dd. hh:mm' }} </td>
+        <td mat-cell *matCellDef="let users"> {{ users.lastLogin | date:'yyyy. MM. dd. HH:mm' }} </td>
     </ng-container>
 
     <ng-container matColumnDef="permission">

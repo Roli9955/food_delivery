@@ -8,6 +8,8 @@
   <div *ngIf="authService.getIsLoggesIn() && authService.getUser().role === 'ROLE_ADMIN'">
     <a mat-button routerLink="user-management">Felhasználó karbantartás</a>
     <a mat-button routerLink="maintenance">Termék karbantartás</a>
+    <a mat-button routerLink="reservation-deliver">Aktív rendelések</a>
+    <a mat-button routerLink="all-reservations">Összes rendelés</a>
   </div> 
   <div class="spacer"></div>
   <div *ngIf="!authService.getIsLoggesIn()">
