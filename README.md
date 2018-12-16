@@ -58,6 +58,9 @@ Kapcsolat(ok): USER(ID) - RESERVATION(User-ID)
 #### Use-Case:
 ![food_delivery_use-case](https://user-images.githubusercontent.com/26537226/49343614-2c4e5780-f66d-11e8-860e-11084edc3127.png)
 
+#### Rendelés folyamat:
+![rendeles_folyamat](https://user-images.githubusercontent.com/26537226/50057616-4e67cf80-016d-11e9-9494-52ea4f2b33c6.png)
+
 #### Végpontok:
 
 Entitások|Típus|Elérés|Leírás|Ki fér hozzá?
