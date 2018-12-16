@@ -3,10 +3,13 @@
 
 ####Fejlesztői környezet és haszált technológiák:
 
-- NetBeans IDE
-- Visual Studio Code
-- GitHub
-- SourceTree
+- NetBeans IDE - BackEnd
+- Visual Studio Code - FrontEnd
+- GitHub:
+	- SourceTree 
+- StarUML - UML
+- MySQL Workbench - adatbázis-modell
+- Balsamiq - drótváz
 
 - Angular keretrendszer
 - Java spring boot
