@@ -28,7 +28,7 @@ export class MaintenanceComponent implements OnInit {
   private product: Product;
 
   private categoryDisplay = ['id', 'name', 'numberOfProducts', 'edit'];
-  private productDisplay = ['id', 'name', 'category', 'price', 'outOfOrder', 'edit'];
+  private productDisplay = ['id', 'name', 'category', 'vegetarian', 'hot', 'price', 'outOfOrder', 'edit'];
 
   constructor(
     private categoryService: CategoryService,
@@ -196,7 +196,9 @@ export class MaintenanceComponentProductDialog{
     price: new FormControl('', Validators.required),
     outOfOrder: new FormControl('', Validators.required),
     category: new FormControl('', Validators.required),
-    description: new FormControl('', Validators.required)
+    description: new FormControl('', Validators.required),
+    vegetarian: new FormControl(''),
+    hot: new FormControl('')
   });
 
   private categories: Category[];
@@ -226,6 +228,8 @@ export class MaintenanceComponentProductDialog{
       this.productForm.controls['outOfOrder'].setValue(this.data.product.outOfOrder);
       this.productForm.controls['description'].setValue(this.data.product.description);
       this.productForm.controls['category'].setValue(this.data.product.category.id);
+      this.productForm.controls['vegetarian'].setValue(this.data.product.vegetarian);
+      this.productForm.controls['hot'].setValue(this.data.product.hot);
       return res;
     });
   }
@@ -237,6 +241,8 @@ export class MaintenanceComponentProductDialog{
     const outOfOrder: boolean = this.productForm.get('outOfOrder').value as boolean;
     const category: number = parseInt(this.productForm.get('category').value);
     const description: string = this.productForm.get('description').value;
+    const vegetarian: boolean = this.productForm.get('vegetarian').value;
+    const hot: boolean = this.productForm.get('hot').value;
 
     if(!name || !price || !category || !description){
       return;
@@ -247,6 +253,8 @@ export class MaintenanceComponentProductDialog{
     product.price = price;
     product.outOfOrder = outOfOrder;
     product.description = description;
+    product.vegetarian = vegetarian;
+    product.hot = hot;
 
     if(this.data.product.id === -1){
       var newProduct = await this.productService.postProduct(product);

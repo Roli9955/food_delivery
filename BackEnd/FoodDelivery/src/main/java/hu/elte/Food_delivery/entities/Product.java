@@ -45,6 +45,12 @@ public class Product implements Serializable{
     private String description;
     
     @Column
+    private Boolean vegetarian;
+    
+    @Column
+    private Boolean hot;
+    
+    @Column
     private String url;
     
     @JsonIgnore

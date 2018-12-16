@@ -55,6 +55,16 @@
             <td mat-cell *matCellDef="let products"> {{ products.category.name }} </td>
           </ng-container>
 
+          <ng-container matColumnDef="vegetarian">
+            <th mat-header-cell *matHeaderCellDef> Vegetáriánus </th>
+            <td mat-cell *matCellDef="let products"> <mat-icon *ngIf="products.vegetarian">done</mat-icon> <mat-icon *ngIf="!products.vegetarian">clear</mat-icon> </td>
+          </ng-container>
+
+          <ng-container matColumnDef="hot">
+            <th mat-header-cell *matHeaderCellDef> Csípős </th>
+            <td mat-cell *matCellDef="let products"> <mat-icon *ngIf="products.hot">done</mat-icon> <mat-icon *ngIf="!products.hot">clear</mat-icon> </td>
+          </ng-container>
+
           <ng-container matColumnDef="price">
               <th mat-header-cell *matHeaderCellDef> Ár </th>
               <td mat-cell *matCellDef="let products"> {{ products.price }} </td>

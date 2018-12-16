@@ -84,7 +84,8 @@ import { ReservationDeliverComponent, ReservationDeliverComponentDialog } from '
     MatDialogModule,
     MatSelectModule,
     MatRadioModule,
-    MatIconModule
+    MatIconModule,
+    MatCheckboxModule
   ],
   entryComponents: [
     UserManagementComponent, 

@@ -1,3 +1,4 @@
+
 package hu.elte.Food_delivery.controller;
 
 import hu.elte.Food_delivery.entities.Category;
@@ -75,6 +76,8 @@ public class ProductController {
         oProduct.get().setDescription(product.getDescription());
         oProduct.get().setOutOfOrder(product.getOutOfOrder());
         oProduct.get().setPrice(product.getPrice());
+        oProduct.get().setVegetarian(product.getVegetarian());
+        oProduct.get().setHot(product.getHot());
         return ResponseEntity.ok(productRepository.save(oProduct.get()));
     }
     

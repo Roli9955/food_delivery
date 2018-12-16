@@ -46,6 +46,7 @@ export class MainPageComponent implements OnInit {
       }
 
     });
+
   }
 
   private findAndAdd(piece: Piece, array: Piece[]): boolean{

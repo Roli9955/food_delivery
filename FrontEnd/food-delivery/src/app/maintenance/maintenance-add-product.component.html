@@ -10,6 +10,8 @@
             <mat-radio-button value="false" checked="true">Rendelhető</mat-radio-button>
             <mat-radio-button value="true">Nem rendelhető</mat-radio-button>
         </mat-radio-group>
+        <mat-checkbox formControlName="vegetarian">Vegetáriánus</mat-checkbox>
+        <mat-checkbox formControlName="hot">Csípős</mat-checkbox>
         <mat-form-field>
             <mat-select formControlName="category" placeholder="Kategória">
                     <mat-option *ngFor="let category of categories"  value="{{category.id}}">{{ category.name }}</mat-option>

@@ -8,4 +8,6 @@ export class Product {
     public description: string;
     public category: Category;
     public url: string;
+    public vegetarian: boolean;
+    public hot: boolean;
 }

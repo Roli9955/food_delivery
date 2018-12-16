@@ -4,11 +4,22 @@
   <mat-grid-tile *ngFor="let product of products">
     <mat-card>
       <mat-card-header>
-        <mat-card-title align="center">
+        <mat-card-title align="left">
           {{ product.name }}
         </mat-card-title>
         <mat-card-subtitle>
           <b>Ár: {{ product.price }}</b>
+        </mat-card-subtitle>
+        <mat-card-subtitle *ngIf="product.hot && !(product.hot && product.vegetarian)">
+          <span style="color: red; font-weight: bold;">Csípős</span>
+        </mat-card-subtitle>
+        <mat-card-subtitle *ngIf="product.vegetarian && !(product.hot && product.vegetarian)">
+          <span style="color: green; font-weight: bold;">Vegetáriánus</span>
+        </mat-card-subtitle>
+        <mat-card-subtitle *ngIf="product.hot && product.vegetarian">
+          <span style="color: red; font-weight: bold;">Csípős</span>
+          <span style="color: black; font-weight: bold;"> - </span>
+          <span style="color: green; font-weight: bold;">Vegetáriánus</span>
         </mat-card-subtitle>
       </mat-card-header>
       <img src="{{ product.url }}">
