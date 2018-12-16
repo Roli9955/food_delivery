@@ -10,6 +10,7 @@
 - StarUML - UML
 - MySQL Workbench - adatbázis-modell
 - Balsamiq - drótváz
+- Paint 
 
 - Angular keretrendszer
 - Java spring boot
@@ -43,6 +44,11 @@
 - Diszpécser: Új felhasználót tud regisztrálni. Rendelést tud felvenni.
 - Futár: "Saját" rendeléseinek listázása.
 - Felhasználó: Rendelés leadása. 
+
+#### Teszt Felhasználók:
+- admin: admin/admin
+- futár: deliver/admin
+- felhasználó: guest/admin
 
 #### Adatbázis modell:
 ![database_sheme](https://user-images.githubusercontent.com/26537226/50056701-40f81880-0160-11e9-9fc2-938faca9e5f1.png)
@@ -91,3 +97,5 @@ User|GET|user/|Lekérdezi az össze felhasználót.|Admin
 ||DELETE|user/{id}|Azonosító alapján felhasználót töröl.|Admin
 ||PUT|user/{id}|Azonosító alapján egy felhasználó adatain módosít.|Admin
 ||PUT|user/{id}/reservation|Hozzárendeli a rendeléshez a futárt.|Admin, Diszpécser
+
+### Felhasználói Dokumentáció
