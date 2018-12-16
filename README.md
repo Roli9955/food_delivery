@@ -99,3 +99,26 @@ User|GET|user/|Lekérdezi az össze felhasználót.|Admin
 ||PUT|user/{id}/reservation|Hozzárendeli a rendeléshez a futárt.|Admin, Diszpécser
 
 ### Felhasználói Dokumentáció
+
+#### Állományok beszerzése
+- Látogasson el a https://github.com/Roli9955/food_delivery oldalra
+- Itt kattintson a "**Clone and Download**" gombra, és azon belül kattintson a "**Download as Zip**" gombra.
+- A letöltött állományt csomagoljuk ki
+
+#### Adatbázis futtatása NetBeans IDE-vel
+- Nyissa meg a NetBeans IDE-t
+- Nyissa meg a projectet
+- A Projects menüben a project fájl legyen kijelőlve, és akkor a navigátorban megtalálható "**spring-boot:run**"-ra kattintson duplán
+
+#### Weboldal futtatása Visual Studio Code-al
+- Nyissa meg a Visual Studio Code-ot
+- Nyissa meg a Frontend mappát
+- Nyisson egy terminált, majd lépjen a food-delivery mappába a **cd food-delivery** kóddal
+- Írja be a következőket:
+	- **npm install @angular/cli@6.2.5**
+	- **npm install**
+- Futassa a weboldalt a **ng serve** paranccsal
+
+#### Weboldal elérése:
+- Nyisson egy böngészőt
+- Írja be a címsorba, hogy **localhost:4200**
