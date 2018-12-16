@@ -1,7 +1,7 @@
 ## Kotroczó Roland (EA2EEB) - Csizmás Dávid(M2H8A7) : Ételrendelés
 ###  Készítsük el egy étel-futár vállalat rendeléseket kezelő rendszerét. 
 
-####Fejlesztői környezet és haszált technológiák:
+#### Fejlesztői környezet és haszált technológiák:
 
 - NetBeans IDE - BackEnd
 - Visual Studio Code - FrontEnd
@@ -45,7 +45,7 @@
 - Felhasználó: Rendelés leadása. 
 
 #### Adatbázis modell:
-![database_sheme](https://user-images.githubusercontent.com/26537226/48969016-6d54c500-eff8-11e8-980c-ca2751bf701a.png)
+![database_sheme](https://user-images.githubusercontent.com/26537226/50056701-40f81880-0160-11e9-9fc2-938faca9e5f1.png)
 - A CATEGORY és PRODUCT táblák között 1 az N-hez kapcsoalt áll fenn, mert egy terméknek egy kategóriája lehet, de egy kategóriatöbb termékhez id tartozhat. 
 Kapcsolat(ok): CATEGORY(ID) - PRODUCT(Category_ID)
 - A PRODUCT és PIECE között is 1 az N-hez kapcsolat áll fent, mert egy termékből nem csak egy lehet.
