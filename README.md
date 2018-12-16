@@ -1,6 +1,18 @@
 ## Kotroczó Roland (EA2EEB) - Csizmás Dávid(M2H8A7) : Ételrendelés
 ###  Készítsük el egy étel-futár vállalat rendeléseket kezelő rendszerét. 
 
+####Fejlesztői környezet és haszált technológiák:
+
+- NetBeans IDE
+- Visual Studio Code
+- GitHub
+- SourceTree
+
+- Angular keretrendszer
+- Java spring boot
+- Mvc modell
+- JSON
+
 #### A megrendeléseket a vásárlók a webes felületen keresztül adhatják le. 
 
 - A weblap főoldalán megjelennek a kategóriák (pl. levesek, pizzák, üdítők), valamint a 3 legnépszerűbb (legtöbbet rendelt) étel/ital. 
